@@ -1,0 +1,98 @@
+﻿@model ServiceSchedules
+@using Newtonsoft.Json;
+@using Microsoft.AspNetCore.Http;
+@{
+    ViewData["Title"] = "AddNewClient";
+    List<Patient> cli = JsonConvert.DeserializeObject<List<Patient>>(Context.Session.GetString("SS"));
+    string loggeduser = Context.Session.GetString("loggedname");
+}
+
+<head>
+    <link href="~/css/Addfile.css" rel="stylesheet" />
+</head>
+<div class="container">
+    <header class="header">
+        <h1 id="title" class="text-center">ADD A NEW SERVICE SCHEDULE</h1>
+        <p id="description" class="description text-center">
+
+        </p>
+    </header>
+    @*aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*@
+
+<form asp-action="AddNewSS">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    @*Hierarchy Start*@
+    <div class="form-group">
+        <p>Hierarchy</p>
+        <select id="dropdown" asp-for="Hierarchy" class="form-control" required>
+            @*<option disabled selected value>Select current role</option>*@
+            <option value="ACT_Springfield_Evergreen">ACT Springfield Evergreen</option>
+            <option value="NWS_Demo_Region">NWS Demo Region</option>
+            <option value="NSW_Demo_Region_A_Unit_1_3">NSW Demo Region A Unit 1 3</option>
+            <option value="NSW_Demo_Region_2_Unit_2_1_A">NSW Demo Region 2 Unit 2 1 A</option>
+            <option value="QLD_Region_4_Bridging_Famillies">QLD Region 4 Bridging Famillies</option>
+            <option value="QLD_Region_Younger_parents_program">QLD Region Younger parents program</option>
+            <option value="NWS_Eiver_Dischange_review">NWS Eiver Dischange review</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Start_date_and_time">Start Date</label>
+        <input type="date" asp-for="Start_date_and_time" id="dateofbirth" />
+        <span asp-validation-for="Start_date_and_time" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="End_date_and_time">End Date</label>
+        <input type="date" asp-for="End_date_and_time" id="dateofbirth" />
+        <span asp-validation-for="Start_date_and_time" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Client_name" class="control-label"></label>
+        <select class="form-control" asp-for="Client_name" placeholder="Pick a Name">
+            @foreach (var item in cli)
+            {
+                <option value="@item.Full_Name">@item.Full_Name</option>
+
+            }
+
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Day_of_week" class="control-label"></label>
+        <input asp-for="Day_of_week" class="form-control" />
+        <span asp-validation-for="Day_of_week" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Service" class="control-label"></label>
+        <input asp-for="Service" class="form-control" />
+        <span asp-validation-for="Service" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Staff" class="control-label"></label>
+        <input asp-for="Staff" class="form-control" value="@loggeduser"
+                   readonly />
+        <span asp-validation-for="Staff" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+
+    <script>
+           $(document).ready(function () {
+                $('select').selectize({
+                    sortField: 'text'
+                });
+            });
+
+    </script>
+</form>
+
+
+
+</div>
+

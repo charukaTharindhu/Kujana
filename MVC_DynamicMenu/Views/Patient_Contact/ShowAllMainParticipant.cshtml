@@ -1,0 +1,98 @@
+﻿@model List<MainParticipantTb>
+@{
+    ViewData["Title"] = "Home page";
+}
+<head>
+    <link href="~/css/Addfile.css" rel="stylesheet" />
+</head>
+<div class="container">
+    <header class="header">
+        <h1 id="title" class="text-center">Participants</h1>
+        <p id="description" class="description text-center">
+
+        </p>
+    </header>
+    <div class="text-right">
+        <input onkeyup="myFunction()" id="myInput" type="text" name="text" class="search" placeholder="Search here!">
+
+        <button type="button" onclick='window.location.href = "/Patient_Contact/AddNewParticipant"' class="btn btn-primary">+Add Participant</button>
+    </div>
+    <br />
+
+    <form id="survey-form">
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table badge-light" id="myTable">
+                    <thead>
+                        <tr>
+                            <th>NDIS No</th>
+                            <th>First name</th>
+                            <th>Last Name</th>
+                            <th>DOB</th>
+                            <th>Address</th>
+                            <th>Contact Infomation</th>
+                            <th>Programm Infomation</th>
+                            <th>Office</th>
+                         
+                        </tr>
+                    </thead>
+
+                    @foreach (var item in Model)
+                    {
+                       <tr>
+                            <td>@item.Office</td>
+                            <td>@item.First_Name</td>
+                            <td>@item.Last_Name</td>
+                            <td>@item.DOB</td>
+                            <td>@item.Address</td>
+                            <td>@item.Contact_info</td>
+                            <td>@item.Contact_info</td>
+                            <td>@item.Programm_Info</td>
+                            <td>@item.Office</td>
+                            <td>
+                                <a asp-controller="Patient_Contact" asp-action="ViewAllParticipant" asp-route-id="@item.NDIS_No">View</a>
+                                <a asp-controller="Patient_Contact" asp-action="UpdateAllPatientInfo" asp-route-id="@item.NDIS_No">Update</a>
+                                <a asp-controller="Patient_Contact" asp-action="DeletePatient" asp-route-id="@item.NDIS_No">Delete</a>
+                            </td>
+                        </tr>
+                     }
+                </table>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            const projectName = 'survey-form';
+
+        </script>
+        @section Scripts{
+            <script>
+                function myFunction() {
+                    var input, filter, table, tr, td, i, txtValue;
+                    input = document.getElementById("myInput");
+                    filter = input.value.toUpperCase();
+                    table = document.getElementById("myTable");
+                    tr = table.getElementsByTagName("tr");
+                    for (i = 0; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[1];
+                        if (td) {
+                            txtValue = td.textContent || td.innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                            } else {
+                                tr[i].style.display = "none";
+                            }
+                        }
+                    }
+                }
+            </script>
+
+
+        }
+    </form>
+
+
+</div>
+
+

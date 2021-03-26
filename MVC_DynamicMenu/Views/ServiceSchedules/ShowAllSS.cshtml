@@ -1,0 +1,102 @@
+﻿
+@model List<ServiceSchedules>
+@{
+    ViewData["Title"] = "Home page";
+}
+<head>
+    <link href="~/css/Addfile.css" rel="stylesheet" />
+</head>
+<div class="container">
+    <header class="header">
+        <div class="text-right">
+            <button type="button" onclick='window.location.href = "/ServiceSchedules/AddNewSS"' class="btn btn-primary">+New Entry</button>
+        </div>
+        
+        <h1 id="title" class="text-center">Show All Service Schedule</h1>
+        <p id="description" class="description text-center">
+
+        </p>
+    </header>
+    
+    <form id="survey-form">
+        <div class="form-group">
+            <label id="name-label" for="name">Select Participant</label>
+            <input type="text"
+                   name="name"
+                   id="name"
+                   class="form-control"
+                   placeholder="Enter name"
+                   required />
+        </div>
+
+        @*Date Start*@
+        <label for="dateofbirth"></label>
+        <input type="date" name="dateofbirth" id="dateofbirth">
+        @*Date Start*@
+        <label for="dateofbirth"></label>
+        <input type="date" name="dateofbirth" id="dateofbirth">
+
+        @*Hierarchy Start*@
+    <div class="form-group">
+        <p>Please Select a State</p>
+        <select id="dropdown" name="role" class="form-control" required>
+            <option name="nsw">New South Wales</option>
+            <option name="vic">Victoria</option>
+            <option name="qld">Queensland</option>
+            <option name="wa">Western Australia</option>
+            <option name="sa">South Australia</option>
+            <option name="tas">Tasmania</option>
+            <option name="act">Australian Capital Territory</option>
+            <option name="nt">Northern Territory</option>
+        </select>
+
+    </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table badge-light">
+                    <thead>
+                        <tr>
+                            <th>Reference</th>
+                            <th>Participant</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Day Of Week</th>
+                            <th>Hierarchy</th>
+                            <th>Service</th>
+                            <th>Staff</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.ReferenceID</td>
+                                <td>@item.Client_name</td>
+                                <td>@item.Start_date_and_time</td>
+                                <td>@item.End_date_and_time</td>
+                                <td>@item.Day_of_week</td>
+                                <td>@item.Hierarchy</td>
+                                <td>@item.Service</td>
+                                <td>@item.Staff</td>
+                                <td>
+                                    <a asp-controller="ServiceSchedules" asp-action="ViewSS" asp-route-id="@item.ReferenceID">View</a>
+                                    <a asp-controller="ServiceSchedules" asp-action="UpdateSS" asp-route-id="@item.ReferenceID">Update</a>
+                                    <a asp-controller="ServiceSchedules" asp-action="AddNewLog" asp-route-id="@item.ReferenceID">Add Log</a>
+                                </td>
+                            </tr>
+                        }
+                </table>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            const projectName = 'survey-form';
+
+        </script>
+    </form>
+
+
+
+</div>
+

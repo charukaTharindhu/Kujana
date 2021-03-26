@@ -1,0 +1,79 @@
+﻿@model NewCallNote
+@using Newtonsoft.Json;
+@using Microsoft.AspNetCore.Http;
+@{
+    ViewData["Title"] = "AddNewClient";
+
+}
+<head>
+    <link href="~/css/Addfile.css" rel="stylesheet" />
+</head>
+<div class="container">
+    <header class="header">
+        <h1 id="title" class="text-center">Add New Call Note</h1>
+        <p id="description" class="description text-center">
+
+        </p>
+    </header>
+
+
+    <form asp-action="UpdateCallNote" id="survey-form">
+        <div class="form-group">
+
+
+            <h6>Call Note</h6>
+            <textarea id="comments"
+                      class="input-textarea"
+                      asp-for="Type_of_Past_noteOBelow"></textarea>
+            <br />
+            <br />
+            <br />
+            <br />
+            <div class="row">
+                <div class="cncolumn">
+                    <h6>Program</h6>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <h6>Participant ID</h6>
+
+                </div>
+                <div class="cncolumn">
+                    <select id="dropdown" asp-for="Program" class="form-control" >
+                        <option value="">--Select Program--</option>
+                        <option value="NDIS">Select</option>
+                        <option value="Respite">Select</option>
+                        <option value="SIL">Select</option>
+                        <option value="Short term Acommadation">Select</option>
+                    </select>
+                    <br />
+                    <br />
+                    <select id="dropdown" asp-for="PraticipantID" class="form-control" >
+                        <option value="">--Select Participant--</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <div style="float:left"><button type="submit" class="btn btn-secondary" onClick="return false;">Cancel</button></div>
+                <div style="float:right"><button type="submit" class="btn btn-primary">Update</button></div>
+            </div>
+
+
+
+
+            <script type="text/javascript">
+                const projectName = 'survey-form';
+
+            </script>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,2321 @@
+﻿@model Patient
+@using Newtonsoft.Json;
+@using Microsoft.AspNetCore.Http;
+@{
+    ViewData["Title"] = "AddNewParticipant";
+    List<Patient> cli = JsonConvert.DeserializeObject<List<Patient>>(Context.Session.GetString("Patient"));
+}
+<head>
+    <link href="~/css/Addfile.css" rel="stylesheet" />
+</head>
+<div class="container">
+
+    <header class="header">
+        <h1 id="title" class="text-center">New Participant</h1>
+        <p id="description" class="description text-center">
+
+        </p>
+    </header>
+
+</div>
+<br />
+<div>
+    <form asp-action="UpdateAllPatientInfo" id="survey-form">
+        <div class="row">
+            <div class="col-md-6">
+                @*Demographic*@
+
+                <button type="button" class="accordion">Demographic</button>
+                <div class="panel">
+                    <div class="form-group">
+                        <p>Demographic</p>
+                        <label id="name-label" asp-for="Patient_Info[0].NDIS_Number">NDIS Number</label>
+                        <input type="text"
+                               asp-for="Patient_Info[0].NDIS_Number"
+                               id="name"
+                               class="form-control"
+                               placeholder="--9 characters starts with 43--"
+                               required />
+
+
+
+                        <label id="name-label" asp-for="Patient_Info[0].FirstName">First Name</label>
+                        <input type="text"
+                               asp-for="Patient_Info[0].FirstName"
+                               id="name"
+                               class="form-control"
+                               required />
+                        <br />
+                        <label id="name-label" asp-for="Patient_Info[0].LastName">Last Name</label>
+                        <input type="text"
+                               asp-for="Patient_Info[0].LastName"
+                               id="name"
+                               class="form-control"
+                               required />
+                        <br />
+                        <label id="name-label" asp-for="Patient_Info[0].Age">Age</label>
+                        <input type="number"
+                               asp-for="Patient_Info[0].Age"
+                               id="name"
+                               class="form-control" />
+                        <br />
+                        <h6>Gender</h6>
+                        <select id="dropdown" asp-for="Patient_Info[0].Gender" class="form-control">
+                            @*<option disabled selected value>Gendere</option>*@
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+
+                        <label asp-for="Patient_Info[0].DateOfBirth">Date Of Birth</label>
+                        <input type="date" asp-for="Patient_Info[0].DateOfBirth" id="dateofbirth" required>
+
+                        <h6>Office</h6>
+                        <select id="dropdown" asp-for="Patient_Info[0].Office" class="form-control" required>
+                            @*<option disabled selected value>Gendere</option>*@
+                            <option value="Melbourne">Melbourne</option>
+                            <option value="Darwin">Darwin</option>
+                        </select>
+
+
+                    </div>
+                </div>
+
+
+
+
+
+                <br />
+
+                @*Program*@
+
+                <button type="button" class="accordion">Program</button>
+                <div class="panel">
+                    <div class="container">
+
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table badge-dark">
+                                        <thead>
+                                            <tr>
+                                                <th>Program</th>
+                                                <th>Commenced</th>
+                                                <th>Date of Exit</th>
+                                                <th>Status</th>
+                                                <th>Pause</th>
+                                                <th>Resume</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+                @*Case Worker*@
+
+                <button type="button" class="accordion">Case Worker</button>
+                <div class="panel">
+                    <div class="container">
+
+
+                        <div class="form-group">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table class="table badge-dark">
+                                            <thead>
+                                                <tr>
+                                                    <th>Case Worker</th>
+                                                    <th>Date Allocated</th>
+                                                    <th>Date Deallocated</th>
+                                                    <th>Key Worker</th>
+
+
+                                                </tr>
+                                            </thead>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <br />
+                @*Culture*@
+
+                <button type="button" class="accordion">Culture</button>
+                <div class="panel">
+                    <div class="container">
+
+
+                        <div class="form-group">
+
+                            <h6>Country</h6>
+                            <select data-placeholder="Choose a Country..." id="dropdown" asp-for="Patient_Info[0].Country" class="form-control">
+                                <option value="Afghanistan">Afghanistan</option>
+                                <option value="Albania">Albania</option>
+                                <option value="Algeria">Algeria</option>
+                                <option value="American Samoa">American Samoa</option>
+                                <option value="Andorra">Andorra</option>
+                                <option value="Angola">Angola</option>
+                                <option value="Anguilla">Anguilla</option>
+                                <option value="Antartica">Antarctica</option>
+                                <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                                <option value="Argentina">Argentina</option>
+                                <option value="Armenia">Armenia</option>
+                                <option value="Aruba">Aruba</option>
+                                <option value="Australia">Australia</option>
+                                <option value="Austria">Austria</option>
+                                <option value="Azerbaijan">Azerbaijan</option>
+                                <option value="Bahamas">Bahamas</option>
+                                <option value="Bahrain">Bahrain</option>
+                                <option value="Bangladesh">Bangladesh</option>
+                                <option value="Barbados">Barbados</option>
+                                <option value="Belarus">Belarus</option>
+                                <option value="Belgium">Belgium</option>
+                                <option value="Belize">Belize</option>
+                                <option value="Benin">Benin</option>
+                                <option value="Bermuda">Bermuda</option>
+                                <option value="Bhutan">Bhutan</option>
+                                <option value="Bolivia">Bolivia</option>
+                                <option value="Bosnia and Herzegowina">Bosnia and Herzegowina</option>
+                                <option value="Botswana">Botswana</option>
+                                <option value="Bouvet Island">Bouvet Island</option>
+                                <option value="Brazil">Brazil</option>
+                                <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
+                                <option value="Brunei Darussalam">Brunei Darussalam</option>
+                                <option value="Bulgaria">Bulgaria</option>
+                                <option value="Burkina Faso">Burkina Faso</option>
+                                <option value="Burundi">Burundi</option>
+                                <option value="Cambodia">Cambodia</option>
+                                <option value="Cameroon">Cameroon</option>
+                                <option value="Canada">Canada</option>
+                                <option value="Cape Verde">Cape Verde</option>
+                                <option value="Cayman Islands">Cayman Islands</option>
+                                <option value="Central African Republic">Central African Republic</option>
+                                <option value="Chad">Chad</option>
+                                <option value="Chile">Chile</option>
+                                <option value="China">China</option>
+                                <option value="Christmas Island">Christmas Island</option>
+                                <option value="Cocos Islands">Cocos (Keeling) Islands</option>
+                                <option value="Colombia">Colombia</option>
+                                <option value="Comoros">Comoros</option>
+                                <option value="Congo">Congo</option>
+                                <option value="Congo">Congo, the Democratic Republic of the</option>
+                                <option value="Cook Islands">Cook Islands</option>
+                                <option value="Costa Rica">Costa Rica</option>
+                                <option value="Cota D'Ivoire">Cote d'Ivoire</option>
+                                <option value="Croatia">Croatia (Hrvatska)</option>
+                                <option value="Cuba">Cuba</option>
+                                <option value="Cyprus">Cyprus</option>
+                                <option value="Czech Republic">Czech Republic</option>
+                                <option value="Denmark">Denmark</option>
+                                <option value="Djibouti">Djibouti</option>
+                                <option value="Dominica">Dominica</option>
+                                <option value="Dominican Republic">Dominican Republic</option>
+                                <option value="East Timor">East Timor</option>
+                                <option value="Ecuador">Ecuador</option>
+                                <option value="Egypt">Egypt</option>
+                                <option value="El Salvador">El Salvador</option>
+                                <option value="Equatorial Guinea">Equatorial Guinea</option>
+                                <option value="Eritrea">Eritrea</option>
+                                <option value="Estonia">Estonia</option>
+                                <option value="Ethiopia">Ethiopia</option>
+                                <option value="Falkland Islands">Falkland Islands (Malvinas)</option>
+                                <option value="Faroe Islands">Faroe Islands</option>
+                                <option value="Fiji">Fiji</option>
+                                <option value="Finland">Finland</option>
+                                <option value="France">France</option>
+                                <option value="France Metropolitan">France, Metropolitan</option>
+                                <option value="French Guiana">French Guiana</option>
+                                <option value="French Polynesia">French Polynesia</option>
+                                <option value="French Southern Territories">French Southern Territories</option>
+                                <option value="Gabon">Gabon</option>
+                                <option value="Gambia">Gambia</option>
+                                <option value="Georgia">Georgia</option>
+                                <option value="Germany">Germany</option>
+                                <option value="Ghana">Ghana</option>
+                                <option value="Gibraltar">Gibraltar</option>
+                                <option value="Greece">Greece</option>
+                                <option value="Greenland">Greenland</option>
+                                <option value="Grenada">Grenada</option>
+                                <option value="Guadeloupe">Guadeloupe</option>
+                                <option value="Guam">Guam</option>
+                                <option value="Guatemala">Guatemala</option>
+                                <option value="Guinea">Guinea</option>
+                                <option value="Guinea-Bissau">Guinea-Bissau</option>
+                                <option value="Guyana">Guyana</option>
+                                <option value="Haiti">Haiti</option>
+                                <option value="Heard and McDonald Islands">Heard and Mc Donald Islands</option>
+                                <option value="Holy See">Holy See (Vatican City State)</option>
+                                <option value="Honduras">Honduras</option>
+                                <option value="Hong Kong">Hong Kong</option>
+                                <option value="Hungary">Hungary</option>
+                                <option value="Iceland">Iceland</option>
+                                <option value="India">India</option>
+                                <option value="Indonesia">Indonesia</option>
+                                <option value="Iran">Iran (Islamic Republic of)</option>
+                                <option value="Iraq">Iraq</option>
+                                <option value="Ireland">Ireland</option>
+                                <option value="Israel">Israel</option>
+                                <option value="Italy">Italy</option>
+                                <option value="Jamaica">Jamaica</option>
+                                <option value="Japan">Japan</option>
+                                <option value="Jordan">Jordan</option>
+                                <option value="Kazakhstan">Kazakhstan</option>
+                                <option value="Kenya">Kenya</option>
+                                <option value="Kiribati">Kiribati</option>
+                                <option value="Democratic People's Republic of Korea">Korea, Democratic People's Republic of</option>
+                                <option value="Korea">Korea, Republic of</option>
+                                <option value="Kuwait">Kuwait</option>
+                                <option value="Kyrgyzstan">Kyrgyzstan</option>
+                                <option value="Lao">Lao People's Democratic Republic</option>
+                                <option value="Latvia">Latvia</option>
+                                <option value="Lebanon" selected>Lebanon</option>
+                                <option value="Lesotho">Lesotho</option>
+                                <option value="Liberia">Liberia</option>
+                                <option value="Libyan Arab Jamahiriya">Libyan Arab Jamahiriya</option>
+                                <option value="Liechtenstein">Liechtenstein</option>
+                                <option value="Lithuania">Lithuania</option>
+                                <option value="Luxembourg">Luxembourg</option>
+                                <option value="Macau">Macau</option>
+                                <option value="Macedonia">Macedonia, The Former Yugoslav Republic of</option>
+                                <option value="Madagascar">Madagascar</option>
+                                <option value="Malawi">Malawi</option>
+                                <option value="Malaysia">Malaysia</option>
+                                <option value="Maldives">Maldives</option>
+                                <option value="Mali">Mali</option>
+                                <option value="Malta">Malta</option>
+                                <option value="Marshall Islands">Marshall Islands</option>
+                                <option value="Martinique">Martinique</option>
+                                <option value="Mauritania">Mauritania</option>
+                                <option value="Mauritius">Mauritius</option>
+                                <option value="Mayotte">Mayotte</option>
+                                <option value="Mexico">Mexico</option>
+                                <option value="Micronesia">Micronesia, Federated States of</option>
+                                <option value="Moldova">Moldova, Republic of</option>
+                                <option value="Monaco">Monaco</option>
+                                <option value="Mongolia">Mongolia</option>
+                                <option value="Montserrat">Montserrat</option>
+                                <option value="Morocco">Morocco</option>
+                                <option value="Mozambique">Mozambique</option>
+                                <option value="Myanmar">Myanmar</option>
+                                <option value="Namibia">Namibia</option>
+                                <option value="Nauru">Nauru</option>
+                                <option value="Nepal">Nepal</option>
+                                <option value="Netherlands">Netherlands</option>
+                                <option value="Netherlands Antilles">Netherlands Antilles</option>
+                                <option value="New Caledonia">New Caledonia</option>
+                                <option value="New Zealand">New Zealand</option>
+                                <option value="Nicaragua">Nicaragua</option>
+                                <option value="Niger">Niger</option>
+                                <option value="Nigeria">Nigeria</option>
+                                <option value="Niue">Niue</option>
+                                <option value="Norfolk Island">Norfolk Island</option>
+                                <option value="Northern Mariana Islands">Northern Mariana Islands</option>
+                                <option value="Norway">Norway</option>
+                                <option value="Oman">Oman</option>
+                                <option value="Pakistan">Pakistan</option>
+                                <option value="Palau">Palau</option>
+                                <option value="Panama">Panama</option>
+                                <option value="Papua New Guinea">Papua New Guinea</option>
+                                <option value="Paraguay">Paraguay</option>
+                                <option value="Peru">Peru</option>
+                                <option value="Philippines">Philippines</option>
+                                <option value="Pitcairn">Pitcairn</option>
+                                <option value="Poland">Poland</option>
+                                <option value="Portugal">Portugal</option>
+                                <option value="Puerto Rico">Puerto Rico</option>
+                                <option value="Qatar">Qatar</option>
+                                <option value="Reunion">Reunion</option>
+                                <option value="Romania">Romania</option>
+                                <option value="Russia">Russian Federation</option>
+                                <option value="Rwanda">Rwanda</option>
+                                <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                                <option value="Saint LUCIA">Saint LUCIA</option>
+                                <option value="Saint Vincent">Saint Vincent and the Grenadines</option>
+                                <option value="Samoa">Samoa</option>
+                                <option value="San Marino">San Marino</option>
+                                <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                                <option value="Saudi Arabia">Saudi Arabia</option>
+                                <option value="Senegal">Senegal</option>
+                                <option value="Seychelles">Seychelles</option>
+                                <option value="Sierra">Sierra Leone</option>
+                                <option value="Singapore">Singapore</option>
+                                <option value="Slovakia">Slovakia (Slovak Republic)</option>
+                                <option value="Slovenia">Slovenia</option>
+                                <option value="Solomon Islands">Solomon Islands</option>
+                                <option value="Somalia">Somalia</option>
+                                <option value="South Africa">South Africa</option>
+                                <option value="South Georgia">South Georgia and the South Sandwich Islands</option>
+                                <option value="Span">Spain</option>
+                                <option value="SriLanka">Sri Lanka</option>
+                                <option value="St. Helena">St. Helena</option>
+                                <option value="St. Pierre and Miguelon">St. Pierre and Miquelon</option>
+                                <option value="Sudan">Sudan</option>
+                                <option value="Suriname">Suriname</option>
+                                <option value="Svalbard">Svalbard and Jan Mayen Islands</option>
+                                <option value="Swaziland">Swaziland</option>
+                                <option value="Sweden">Sweden</option>
+                                <option value="Switzerland">Switzerland</option>
+                                <option value="Syria">Syrian Arab Republic</option>
+                                <option value="Taiwan">Taiwan, Province of China</option>
+                                <option value="Tajikistan">Tajikistan</option>
+                                <option value="Tanzania">Tanzania, United Republic of</option>
+                                <option value="Thailand">Thailand</option>
+                                <option value="Togo">Togo</option>
+                                <option value="Tokelau">Tokelau</option>
+                                <option value="Tonga">Tonga</option>
+                                <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                                <option value="Tunisia">Tunisia</option>
+                                <option value="Turkey">Turkey</option>
+                                <option value="Turkmenistan">Turkmenistan</option>
+                                <option value="Turks and Caicos">Turks and Caicos Islands</option>
+                                <option value="Tuvalu">Tuvalu</option>
+                                <option value="Uganda">Uganda</option>
+                                <option value="Ukraine">Ukraine</option>
+                                <option value="United Arab Emirates">United Arab Emirates</option>
+                                <option value="United Kingdom">United Kingdom</option>
+                                <option value="United States">United States</option>
+                                <option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
+                                <option value="Uruguay">Uruguay</option>
+                                <option value="Uzbekistan">Uzbekistan</option>
+                                <option value="Vanuatu">Vanuatu</option>
+                                <option value="Venezuela">Venezuela</option>
+                                <option value="Vietnam">Viet Nam</option>
+                                <option value="Virgin Islands (British)">Virgin Islands (British)</option>
+                                <option value="Virgin Islands (U.S)">Virgin Islands (U.S.)</option>
+                                <option value="Wallis and Futana Islands">Wallis and Futuna Islands</option>
+                                <option value="Western Sahara">Western Sahara</option>
+                                <option value="Yemen">Yemen</option>
+                                <option value="Serbia">Serbia</option>
+                                <option value="Zambia">Zambia</option>
+                                <option value="Zimbabwe">Zimbabwe</option>
+                            </select>
+                            <br />
+
+                            <label id="name-label" asp-for="Patient_Info[0].COB_Comment"> COB Comment</label>
+                            <input type="text"
+                                   asp-for="Patient_Info[0].COB_Comment"
+                                   id="name"
+                                   class="form-control" />
+                            <br />
+                            <h6>Indegenous Status</h6>
+                            <select id="dropdown" asp-for="Patient_Info[0].Indegenous_status" class="form-control">
+                                @*<option disabled selected value>Select Status</option>*@
+                                <option value="Aboriginal">Aboriginal</option>
+                                <option value="Torres Strait Islander">Torres Strait Islander</option>
+                            </select>
+                            <br />
+                            <label id="name-label" asp-for="Patient_Info[0].Other_Cultural_Issues"> Other Cultural Issues</label>
+                            <input type="text"
+                                   asp-for="Patient_Info[0].Other_Cultural_Issues"
+                                   id="name"
+                                   class="form-control" />
+                            <br />
+                            <h6>Language Spoken at Home</h6>
+                            <select id="dropdown" asp-for="Patient_Info[0].Language_spoken_at_home" class="form-control" data-placeholder="Choose a Language...">
+                                <option value="Afrikaans">Afrikaans</option>
+                                <option value="Albanian">Albanian</option>
+                                <option value="Arabic">Arabic</option>
+                                <option value="Armenian">Armenian</option>
+                                <option value="Basque">Basque</option>
+                                <option value="Bengali">Bengali</option>
+                                <option value="Bulgarian">Bulgarian</option>
+                                <option value="Catalan">Catalan</option>
+                                <option value="Cambodian">Cambodian</option>
+                                <option value="Chinese (Mandarin)">Chinese (Mandarin)</option>
+                                <option value="Croatian">Croatian</option>
+                                <option value="Czech">Czech</option>
+                                <option value="Danish">Danish</option>
+                                <option value="Dutch">Dutch</option>
+                                <option value="English">English</option>
+                                <option value="Estonian">Estonian</option>
+                                <option value="Fiji">Fiji</option>
+                                <option value="Finnish">Finnish</option>
+                                <option value="French">French</option>
+                                <option value="Georgian">Georgian</option>
+                                <option value="German">German</option>
+                                <option value="Greek">Greek</option>
+                                <option value="Gujarati">Gujarati</option>
+                                <option value="Hebrew">Hebrew</option>
+                                <option value="Hindi">Hindi</option>
+                                <option value="Hungarian">Hungarian</option>
+                                <option value="Icelandic">Icelandic</option>
+                                <option value="Indonesian">Indonesian</option>
+                                <option value="Irish">Irish</option>
+                                <option value="Italian">Italian</option>
+                                <option value="Japanese">Japanese</option>
+                                <option value="Javanese">Javanese</option>
+                                <option value="Korean">Korean</option>
+                                <option value="Latin">Latin</option>
+                                <option value="Latvian">Latvian</option>
+                                <option value="Lithuanian">Lithuanian</option>
+                                <option value="Macedonian">Macedonian</option>
+                                <option value="Malay">Malay</option>
+                                <option value="Malayalam">Malayalam</option>
+                                <option value="Maltese">Maltese</option>
+                                <option value="Maori">Maori</option>
+                                <option value="Marathi">Marathi</option>
+                                <option value="Mongolian">Mongolian</option>
+                                <option value="Nepali">Nepali</option>
+                                <option value="Norwegian">Norwegian</option>
+                                <option value="Persian">Persian</option>
+                                <option value="Polish">Polish</option>
+                                <option value="Portuguese">Portuguese</option>
+                                <option value="Punjabi">Punjabi</option>
+                                <option value="Quechua">Quechua</option>
+                                <option value="Romanian">Romanian</option>
+                                <option value="Russian">Russian</option>
+                                <option value="Samoan">Samoan</option>
+                                <option value="Serbian">Serbian</option>
+                                <option value="Slovak">Slovak</option>
+                                <option value="Slovenian">Slovenian</option>
+                                <option value="Spanish">Spanish</option>
+                                <option value="Swahili">Swahili</option>
+                                <option value="Swedish ">Swedish </option>
+                                <option value="Tamil">Tamil</option>
+                                <option value="Tatar">Tatar</option>
+                                <option value="Telugu">Telugu</option>
+                                <option value="Thai">Thai</option>
+                                <option value="Tibetan">Tibetan</option>
+                                <option value="Tonga">Tonga</option>
+                                <option value="Turkish">Turkish</option>
+                                <option value="Ukrainian">Ukrainian</option>
+                                <option value="Urdu">Urdu</option>
+                                <option value="Uzbek">Uzbek</option>
+                                <option value="Vietnamese">Vietnamese</option>
+                                <option value="Welsh">Welsh</option>
+                                <option value="Xhosa">Xhosa</option>
+                            </select>
+
+                            <br />
+                            <h6>Interpreter Needed</h6>
+
+                            <label>
+                                <input asp-for="Patient_Info[0].Interpreted_needed"
+                                       value="Yes"
+                                       type="radio"
+                                       class="input-radio"
+                                       checked />Yes
+                            </label>
+                            <br />
+                            <label>
+                                <input asp-for="Patient_Info[0].Interpreted_needed"
+                                       value="No"
+                                       type="radio"
+                                       class="input-radio" />No
+                            </label>
+                            <br />
+                            <label id="name-label" asp-for="Patient_Info[0].Comments">Comment</label>
+                            <input type="text"
+                                   asp-for="Patient_Info[0].Comments"
+                                   id="name"
+                                   class="form-control" />
+
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+
+                <br />
+                @*Income*@
+
+                <button type="button" class="accordion">Income</button>
+                <div class="panel">
+                    <div class="container">
+
+
+                        <div class="form-group">
+
+                            <p>Income</p>
+
+
+                            <h6>Primary Income Source</h6>
+                            <select id="dropdown" asp-for="Patient_Info[0].Primary_income_source" class="form-control">
+                                @*<option disabled selected value>Gendere</option>*@
+                                <option value="NDIS">NDIS</option>
+                                <option value="Own">Own</option>
+                                <option value="Brokerage">Brokerage</option>
+                            </select>
+                            <br />
+                            <label id="name-label" asp-for="Patient_Info[0].Effective_date">Effective Date</label>
+                            <input type="date"
+                                   asp-for="Patient_Info[0].Effective_date"
+                                   id="name"
+                                   class="form-control" />
+                            <br />
+                            <label id="name-label" asp-for="Patient_Info[0].CeterLink_Number">CenterLink Number </label>
+                            <input type="text"
+                                   asp-for="Patient_Info[0].CeterLink_Number"
+                                   id="name"
+                                   class="form-control" />
+                            <br />
+                            <label id="name-label" asp-for="Patient_Info[0].IncomeComments">Comment</label>
+                            <input type="text"
+                                   asp-for="Patient_Info[0].IncomeComments"
+                                   id="name"
+                                   class="form-control" />
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+                <br />
+                @*Disabilities*@
+
+                <button type="button" class="accordion">Disabilities</button>
+                <div class="panel">
+                    <div class="container">
+
+
+                        <div class="form-group">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <p>Disabilities</p>
+
+                                    <h6>None</h6>
+                                    <div class="row">
+                                        <div class="Mcolumn">
+                                            <label>
+                                                <input asp-for="patient_Helths[0].Dissabilities_none"
+                                                       value="Yes"
+                                                       type="radio"
+                                                       class="input-radio"
+                                                       checked />Yes
+                                            </label>
+                                            <label>
+                                                <input asp-for="patient_Helths[0].Dissabilities_none"
+                                                       value="No"
+                                                       type="radio"
+                                                       class="input-radio" />No
+                                            </label>
+                                        </div>
+                                        <div class="Mcolumn">
+                                            <input data-placeholder="--Comment--" type="text"
+                                                   asp-for="patient_Helths[0].Dissabilities_none_Comment"
+                                                   id="name"
+                                                   class="form-control" />
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <h6>Hearing Imairment/Deaf</h6>
+                                    <div class="row">
+                                        <div class="Mcolumn">
+                                            <label>
+                                                <input asp-for="patient_Helths[0].Hearing_inmpairment"
+                                                       value="Yes"
+                                                       type="radio"
+                                                       class="input-radio"
+                                                       checked />Yes
+                                            </label>
+                                            <label>
+                                                <input asp-for="patient_Helths[0].Hearing_inmpairment"
+                                                       value="No"
+                                                       type="radio"
+                                                       class="input-radio" />No
+                                            </label>
+                                        </div>
+                                        <div class="Mcolumn">
+                                            <input data-placeholder="--Comment--" type="text"
+                                                   asp-for="patient_Helths[0].Hearing_inmpairment_comment"
+                                                   id="name"
+                                                   class="form-control" />
+                                        </div>
+                                    </div>
+                                    <br />
+
+                                    <h6>Vision Impairment/Deaf</h6>
+                                    <div class="row">
+                                        <div class="Mcolumn">
+                                            <label>
+                                                <input asp-for="patient_Helths[0].Vission_impa"
+                                                       value="Yes"
+                                                       type="radio"
+                                                       class="input-radio"
+                                                       checked />Yes
+                                            </label>
+                                            <label>
+                                                <input asp-for="patient_Helths[0].Vission_impa"
+                                                       value="No"
+                                                       type="radio"
+                                                       class="input-radio" />No
+                                            </label>
+                                        </div>
+                                        <div class="Mcolumn">
+                                            <input data-placeholder="--Comment--" type="text"
+                                                   asp-for="patient_Helths[0].Vission_impap_comment"
+                                                   id="name"
+                                                   class="form-control" />
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <h6>Intellecural disability</h6>
+                                    <div class="row">
+                                        <div class="Mcolumn">
+                                            <label>
+                                                <input asp-for="patient_Helths[0].Interlrctual_disability"
+                                                       value="Yes"
+                                                       type="radio"
+                                                       class="input-radio"
+                                                       checked />Yes
+                                            </label>
+                                            <label>
+                                                <input asp-for="patient_Helths[0].Interlrctual_disability"
+                                                       value="No"
+                                                       type="radio"
+                                                       class="input-radio" />No
+                                            </label>
+                                        </div>
+                                        <div class="Mcolumn">
+                                            <input data-placeholder="--Comment--" type="text"
+                                                   asp-for="patient_Helths[0].Interlrctual_disability_comment"
+                                                   id="name"
+                                                   class="form-control" />
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <h6>Physical disability</h6>
+                                    <div class="row">
+                                        <div class="Mcolumn">
+                                            <label>
+                                                <input asp-for="patient_Helths[0].Physical_disability"
+                                                       value="Yes"
+                                                       type="radio"
+                                                       class="input-radio"
+                                                       checked />Yes
+                                            </label>
+                                            <label>
+                                                <input asp-for="patient_Helths[0].Physical_disability"
+                                                       value="No"
+                                                       type="radio"
+                                                       class="input-radio" />No
+                                            </label>
+                                        </div>
+                                        <div class="Mcolumn">
+                                            <input data-placeholder="--Comment--" type="text"
+                                                   asp-for="patient_Helths[0].Physical_disability_comment"
+                                                   id="name"
+                                                   class="form-control" />
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <h6>Acquired brain injury</h6>
+                                    <div class="row">
+                                        <div class="Mcolumn">
+                                            <label>
+                                                <input asp-for="patient_Helths[0].Acquried_brain_injury"
+                                                       value="Yes"
+                                                       type="radio"
+                                                       class="input-radio"
+                                                       checked />Yes
+                                            </label>
+                                            <label>
+                                                <input asp-for="patient_Helths[0].Acquried_brain_injury"
+                                                       value="No"
+                                                       type="radio"
+                                                       class="input-radio" />No
+                                            </label>
+                                        </div>
+                                        <div class="Mcolumn">
+                                            <input data-placeholder="--Comment--" type="text"
+                                                   asp-for="patient_Helths[0].Acquried_brain_injury_comment"
+                                                   id="name"
+                                                   class="form-control" />
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <h6>Suspected ABI</h6>
+                                    <div class="row">
+                                        <div class="Mcolumn">
+                                            <label>
+                                                <input asp-for="patient_Helths[0].Suspected_ABI"
+                                                       value="Yes"
+                                                       type="radio"
+                                                       class="input-radio"
+                                                       checked />Yes
+                                            </label>
+                                            <label>
+                                                <input asp-for="patient_Helths[0].Suspected_ABI"
+                                                       value="No"
+                                                       type="radio"
+                                                       class="input-radio" />No
+                                            </label>
+                                        </div>
+                                        <div class="Mcolumn">
+                                            <input data-placeholder="--Comment--" type="text"
+                                                   asp-for="patient_Helths[0].Suspected_ABI_comment"
+                                                   id="name"
+                                                   class="form-control" />
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <h6>Down Syndrome</h6>
+                                    <div class="row">
+                                        <div class="Mcolumn">
+                                            <label>
+                                                <input asp-for="patient_Helths[0].Down_Syndrome"
+                                                       value="Yes"
+                                                       type="radio"
+                                                       class="input-radio"
+                                                       checked />Yes
+                                            </label>
+                                            <label>
+                                                <input asp-for="patient_Helths[0].Down_Syndrome"
+                                                       value="No"
+                                                       type="radio"
+                                                       class="input-radio" />No
+                                            </label>
+                                        </div>
+                                        <div class="Mcolumn">
+                                            <input data-placeholder="--Comment--" type="text"
+                                                   asp-for="patient_Helths[0].Down_Syndrome_comment"
+                                                   id="name"
+                                                   class="form-control" />
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <h6>Other</h6>
+                                    <div class="row">
+                                        <div class="Mcolumn">
+                                            <label>
+                                                <input asp-for="patient_Helths[0].Other"
+                                                       value="Yes"
+                                                       type="radio"
+                                                       class="input-radio"
+                                                       checked />Yes
+                                            </label>
+                                            <label>
+                                                <input asp-for="patient_Helths[0].Other"
+                                                       value="No"
+                                                       type="radio"
+                                                       class="input-radio" />No
+                                            </label>
+                                        </div>
+                                        <div class="Mcolumn">
+                                            <input data-placeholder="--Comment--" type="text"
+                                                   asp-for="patient_Helths[0].Other_Comment"
+                                                   id="name"
+                                                   class="form-control" />
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <h6>Unknown</h6>
+                                    <div class="row">
+                                        <div class="Mcolumn">
+                                            <label>
+                                                <input asp-for="patient_Helths[0].Unknown"
+                                                       value="Yes"
+                                                       type="radio"
+                                                       class="input-radio"
+                                                       checked />Yes
+                                            </label>
+                                            <label>
+                                                <input asp-for="patient_Helths[0].Unknown"
+                                                       value="No"
+                                                       type="radio"
+                                                       class="input-radio" />No
+                                            </label>
+                                        </div>
+                                        <div class="Mcolumn">
+                                            <input data-placeholder="--Comment--" type="text"
+                                                   asp-for="patient_Helths[0].Unknown_comment"
+                                                   id="name"
+                                                   class="form-control" />
+                                        </div>
+                                    </div>
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+                <br />
+                @*Care Teams*@
+
+                <button type="button" class="accordion">Care Teams</button>
+                <div class="panel">
+                    <div class="container">
+
+
+                        <div class="form-group">
+                            <p>Care Teams</p>
+                            <h6>Sub-Program</h6>
+                            <select data-placeholder="--Select Sub Program--" id="dropdown" asp-for="CareTeams[0].Sub_Program" class="form-control">
+                                @*<option disabled selected value>Gendere</option>*@
+
+                            </select>
+                            <br />
+                            <h6>Group</h6>
+                            <select data-placeholder="--Select Group--" id="dropdown" asp-for="CareTeams[0].Group" class="form-control">
+                                @*<option disabled selected value>Gendere</option>*@
+                                <option value="Group 1">Group 1</option>
+                                <option value="Group 2">Group 2</option>
+                                <option value="learner">Other</option>
+                            </select>
+                            <br />
+                            <label id="name-label" asp-for="CareTeams[0].Referal_Date">Reffer Date</label>
+                            <input type="date"
+                                   asp-for="CareTeams[0].Referal_Date"
+                                   id="name"
+                                   class="form-control" />
+                            <br />
+                            <h6>Reffer Source</h6>
+                            <select data-placeholder="--Select Referral--" id="dropdown" asp-for="CareTeams[0].Referal_source" class="form-control">
+                                @*<option disabled selected value>Gendere</option>*@
+                                <option value="Hospital">Hospital</option>
+                                <option value="Police">police</option>
+                            </select>
+
+                            <label id="name-label" asp-for="CareTeams[0].Referal_name">Reffer Name</label>
+                            <input type="text"
+                                   asp-for="CareTeams[0].Referal_name"
+                                   id="name"
+                                   class="form-control" />
+
+                            <label id="name-label" asp-for="CareTeams[0].Agency_name">Agency Name</label>
+                            <input type="text"
+                                   asp-for="CareTeams[0].Agency_name"
+                                   id="name"
+                                   class="form-control" />
+
+                            <label id="name-label" asp-for="CareTeams[0].Address">Address</label>
+                            <input type="text"
+                                   asp-for="CareTeams[0].Address"
+                                   id="name"
+                                   class="form-control" />
+
+                            <label id="name-label" asp-for="CareTeams[0].Phone">Phone</label>
+                            <input type="text"
+                                   asp-for="CareTeams[0].Phone"
+                                   id="name"
+                                   class="form-control" />
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <div class="col-md-6">
+                @*Emargancy Contact*@
+
+
+                <button type="button" class="accordion">Emargancy Contact</button>
+                <div class="panel">
+                    <div class="container">
+
+                        <div class="form-group">
+
+                            <p>Emargancy Contact</p>
+                            <label id="name-label" asp-for="patient_Contacts[0].Name">Name</label>
+                            <input type="text"
+                                   asp-for="patient_Contacts[0].Name"
+                                   id="name"
+                                   class="form-control" />
+
+
+                            <h6>Relationship</h6>
+                            <select id="dropdown" asp-for="patient_Contacts[0].Relationship" class="form-control">
+                                @*<option disabled selected value>Gendere</option>*@
+                                <option value="Mother">Mother</option>
+                                <option value="Father">Father</option>
+                                <option value="Child">Child</option>
+                                <option value="Grandmother">Grandmother</option>
+                                <option value="Grandfather">Grandfather</option>
+
+                            </select>
+
+
+                            <label id="name-label" asp-for="patient_Contacts[0].emargencyPhone">Emargency Phone Number</label>
+                            <input type="number"
+                                   asp-for="patient_Contacts[0].emargencyPhone"
+                                   id="name"
+                                   class="form-control" />
+                            <br />
+                            <label id="name-label" asp-for="patient_Contacts[0].emargencyName">Emergency name</label>
+                            <input type="text"
+                                   asp-for="patient_Contacts[0].emargencyName"
+                                   id="name"
+                                   class="form-control" />
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+
+                <br />
+                @*Contact Information*@
+
+                <button type="button" class="accordion">Contact Information</button>
+                <div class="panel">
+                    <div class="container">
+
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="column">
+                                    <h6>Type</h6>
+                                    <select id="dropdown" asp-for="patient_Contacts[0].Type" class="form-control">
+                                        @*<option disabled selected value>Gendere</option>*@
+                                        <option value="Cell">Cell</option>
+                                        <option value="Tel">Tel</option>
+                                        <option value="Fax">Fax</option>
+                                    </select>
+                                </div>
+                                <div class="column">
+
+                                    <label id="name-label" asp-for="patient_Contacts[0].Phone">Number</label>
+                                    <input type="text"
+                                           asp-for="patient_Contacts[0].Phone"
+                                           id="name"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                            <br />
+                            <br />
+                            <br />
+                            <h6>Can Text?</h6>
+                            <label>
+                                <input asp-for="patient_Contacts[0].Can_text"
+                                       value="Yes"
+                                       type="radio"
+                                       class="input-radio"
+                                       checked />Yes
+                            </label>
+                            <br />
+                            <label>
+                                <input asp-for="patient_Contacts[0].Can_text"
+                                       value="No"
+                                       type="radio"
+                                       class="input-radio" />No
+                            </label>
+                            <br />
+                            <label id="name-label" asp-for="patient_Contacts[0].Email">Email</label>
+                            <input type="text"
+                                   asp-for="patient_Contacts[0].Email"
+                                   id="name"
+                                   class="form-control" />
+                            <br />
+
+                            <label id="name-label" asp-for="patient_Contacts[0].Comment">Comment</label>
+                            <input type="text"
+                                   asp-for="patient_Contacts[0].Comment"
+                                   id="name"
+                                   class="form-control" />
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+                <br />
+                @*Address*@
+
+                <button type="button" class="accordion">Address</button>
+                <div class="panel">
+                    <div class="container">
+
+
+                        <div class="form-group">
+                            <p>Address</p>
+                            <h6>Disclose Address</h6>
+                            <label>
+                                <input asp-for="patient_Contacts[0].Disclose_Address"
+                                       value="Yes"
+                                       type="radio"
+                                       class="input-radio"
+                                       checked />Yes
+                            </label>
+                            <label>
+                                <input asp-for="patient_Contacts[0].Disclose_Address"
+                                       value="No"
+                                       type="radio"
+                                       class="input-radio" />No
+                            </label>
+                            <br />
+                            <label id="name-label" asp-for="patient_Contacts[0].Line1">Line 1</label>
+                            <input type="text"
+                                   asp-for="patient_Contacts[0].Line1"
+                                   id="name"
+                                   class="form-control" />
+                            <br />
+                            <label id="name-label" asp-for="patient_Contacts[0].Line2">Line 2</label>
+                            <input type="text"
+                                   asp-for="patient_Contacts[0].Line2"
+                                   id="name"
+                                   class="form-control" />
+                            <br />
+                            <label id="name-label" asp-for="patient_Contacts[0].City">City</label>
+                            <input type="text"
+                                   asp-for="patient_Contacts[0].City"
+                                   id="name"
+                                   class="form-control" />
+                            <br />
+                            <div class="row">
+                                <div class="Addcolumn">
+
+                                    <h6>State</h6>
+                                    <select id="dropdown" asp-for="patient_Contacts[0].State" class="form-control">
+                                        @*<option disabled selected value>Gendere</option>*@
+                                        <option value="student">ACT</option>
+                                        <option value="job">NSW</option>
+                                        <option value="learner">VIC</option>
+                                        <option value="student">QLD</option>
+                                        <option value="job">SA</option>
+                                        <option value="learner">WA</option>
+                                        <option value="job">TAS</option>
+                                        <option value="learner">NTA</option>
+                                    </select>
+                                </div>
+                                <div class="Addcolumn">
+
+                                    <label id="name-label" asp-for="patient_Contacts[0].emargencyPhone">Number</label>
+                                    <input type="text"
+                                           asp-for="patient_Contacts[0].emargencyPhone"
+                                           id="name"
+                                           class="form-control" />
+                                </div>
+                            </div>
+
+                            <br />
+                            <br />
+                            <h6>Country</h6>
+                            <select data-placeholder="Choose a Country..." id="dropdown" asp-for="patient_Contacts[0].Country" class="form-control">
+                                <option value="Afghanistan">Afghanistan</option>
+                                <option value="Albania">Albania</option>
+                                <option value="Algeria">Algeria</option>
+                                <option value="American Samoa">American Samoa</option>
+                                <option value="Andorra">Andorra</option>
+                                <option value="Angola">Angola</option>
+                                <option value="Anguilla">Anguilla</option>
+                                <option value="Antartica">Antarctica</option>
+                                <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                                <option value="Argentina">Argentina</option>
+                                <option value="Armenia">Armenia</option>
+                                <option value="Aruba">Aruba</option>
+                                <option value="Australia">Australia</option>
+                                <option value="Austria">Austria</option>
+                                <option value="Azerbaijan">Azerbaijan</option>
+                                <option value="Bahamas">Bahamas</option>
+                                <option value="Bahrain">Bahrain</option>
+                                <option value="Bangladesh">Bangladesh</option>
+                                <option value="Barbados">Barbados</option>
+                                <option value="Belarus">Belarus</option>
+                                <option value="Belgium">Belgium</option>
+                                <option value="Belize">Belize</option>
+                                <option value="Benin">Benin</option>
+                                <option value="Bermuda">Bermuda</option>
+                                <option value="Bhutan">Bhutan</option>
+                                <option value="Bolivia">Bolivia</option>
+                                <option value="Bosnia and Herzegowina">Bosnia and Herzegowina</option>
+                                <option value="Botswana">Botswana</option>
+                                <option value="Bouvet Island">Bouvet Island</option>
+                                <option value="Brazil">Brazil</option>
+                                <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
+                                <option value="Brunei Darussalam">Brunei Darussalam</option>
+                                <option value="Bulgaria">Bulgaria</option>
+                                <option value="Burkina Faso">Burkina Faso</option>
+                                <option value="Burundi">Burundi</option>
+                                <option value="Cambodia">Cambodia</option>
+                                <option value="Cameroon">Cameroon</option>
+                                <option value="Canada">Canada</option>
+                                <option value="Cape Verde">Cape Verde</option>
+                                <option value="Cayman Islands">Cayman Islands</option>
+                                <option value="Central African Republic">Central African Republic</option>
+                                <option value="Chad">Chad</option>
+                                <option value="Chile">Chile</option>
+                                <option value="China">China</option>
+                                <option value="Christmas Island">Christmas Island</option>
+                                <option value="Cocos Islands">Cocos (Keeling) Islands</option>
+                                <option value="Colombia">Colombia</option>
+                                <option value="Comoros">Comoros</option>
+                                <option value="Congo">Congo</option>
+                                <option value="Congo">Congo, the Democratic Republic of the</option>
+                                <option value="Cook Islands">Cook Islands</option>
+                                <option value="Costa Rica">Costa Rica</option>
+                                <option value="Cota D'Ivoire">Cote d'Ivoire</option>
+                                <option value="Croatia">Croatia (Hrvatska)</option>
+                                <option value="Cuba">Cuba</option>
+                                <option value="Cyprus">Cyprus</option>
+                                <option value="Czech Republic">Czech Republic</option>
+                                <option value="Denmark">Denmark</option>
+                                <option value="Djibouti">Djibouti</option>
+                                <option value="Dominica">Dominica</option>
+                                <option value="Dominican Republic">Dominican Republic</option>
+                                <option value="East Timor">East Timor</option>
+                                <option value="Ecuador">Ecuador</option>
+                                <option value="Egypt">Egypt</option>
+                                <option value="El Salvador">El Salvador</option>
+                                <option value="Equatorial Guinea">Equatorial Guinea</option>
+                                <option value="Eritrea">Eritrea</option>
+                                <option value="Estonia">Estonia</option>
+                                <option value="Ethiopia">Ethiopia</option>
+                                <option value="Falkland Islands">Falkland Islands (Malvinas)</option>
+                                <option value="Faroe Islands">Faroe Islands</option>
+                                <option value="Fiji">Fiji</option>
+                                <option value="Finland">Finland</option>
+                                <option value="France">France</option>
+                                <option value="France Metropolitan">France, Metropolitan</option>
+                                <option value="French Guiana">French Guiana</option>
+                                <option value="French Polynesia">French Polynesia</option>
+                                <option value="French Southern Territories">French Southern Territories</option>
+                                <option value="Gabon">Gabon</option>
+                                <option value="Gambia">Gambia</option>
+                                <option value="Georgia">Georgia</option>
+                                <option value="Germany">Germany</option>
+                                <option value="Ghana">Ghana</option>
+                                <option value="Gibraltar">Gibraltar</option>
+                                <option value="Greece">Greece</option>
+                                <option value="Greenland">Greenland</option>
+                                <option value="Grenada">Grenada</option>
+                                <option value="Guadeloupe">Guadeloupe</option>
+                                <option value="Guam">Guam</option>
+                                <option value="Guatemala">Guatemala</option>
+                                <option value="Guinea">Guinea</option>
+                                <option value="Guinea-Bissau">Guinea-Bissau</option>
+                                <option value="Guyana">Guyana</option>
+                                <option value="Haiti">Haiti</option>
+                                <option value="Heard and McDonald Islands">Heard and Mc Donald Islands</option>
+                                <option value="Holy See">Holy See (Vatican City State)</option>
+                                <option value="Honduras">Honduras</option>
+                                <option value="Hong Kong">Hong Kong</option>
+                                <option value="Hungary">Hungary</option>
+                                <option value="Iceland">Iceland</option>
+                                <option value="India">India</option>
+                                <option value="Indonesia">Indonesia</option>
+                                <option value="Iran">Iran (Islamic Republic of)</option>
+                                <option value="Iraq">Iraq</option>
+                                <option value="Ireland">Ireland</option>
+                                <option value="Israel">Israel</option>
+                                <option value="Italy">Italy</option>
+                                <option value="Jamaica">Jamaica</option>
+                                <option value="Japan">Japan</option>
+                                <option value="Jordan">Jordan</option>
+                                <option value="Kazakhstan">Kazakhstan</option>
+                                <option value="Kenya">Kenya</option>
+                                <option value="Kiribati">Kiribati</option>
+                                <option value="Democratic People's Republic of Korea">Korea, Democratic People's Republic of</option>
+                                <option value="Korea">Korea, Republic of</option>
+                                <option value="Kuwait">Kuwait</option>
+                                <option value="Kyrgyzstan">Kyrgyzstan</option>
+                                <option value="Lao">Lao People's Democratic Republic</option>
+                                <option value="Latvia">Latvia</option>
+                                <option value="Lebanon" selected>Lebanon</option>
+                                <option value="Lesotho">Lesotho</option>
+                                <option value="Liberia">Liberia</option>
+                                <option value="Libyan Arab Jamahiriya">Libyan Arab Jamahiriya</option>
+                                <option value="Liechtenstein">Liechtenstein</option>
+                                <option value="Lithuania">Lithuania</option>
+                                <option value="Luxembourg">Luxembourg</option>
+                                <option value="Macau">Macau</option>
+                                <option value="Macedonia">Macedonia, The Former Yugoslav Republic of</option>
+                                <option value="Madagascar">Madagascar</option>
+                                <option value="Malawi">Malawi</option>
+                                <option value="Malaysia">Malaysia</option>
+                                <option value="Maldives">Maldives</option>
+                                <option value="Mali">Mali</option>
+                                <option value="Malta">Malta</option>
+                                <option value="Marshall Islands">Marshall Islands</option>
+                                <option value="Martinique">Martinique</option>
+                                <option value="Mauritania">Mauritania</option>
+                                <option value="Mauritius">Mauritius</option>
+                                <option value="Mayotte">Mayotte</option>
+                                <option value="Mexico">Mexico</option>
+                                <option value="Micronesia">Micronesia, Federated States of</option>
+                                <option value="Moldova">Moldova, Republic of</option>
+                                <option value="Monaco">Monaco</option>
+                                <option value="Mongolia">Mongolia</option>
+                                <option value="Montserrat">Montserrat</option>
+                                <option value="Morocco">Morocco</option>
+                                <option value="Mozambique">Mozambique</option>
+                                <option value="Myanmar">Myanmar</option>
+                                <option value="Namibia">Namibia</option>
+                                <option value="Nauru">Nauru</option>
+                                <option value="Nepal">Nepal</option>
+                                <option value="Netherlands">Netherlands</option>
+                                <option value="Netherlands Antilles">Netherlands Antilles</option>
+                                <option value="New Caledonia">New Caledonia</option>
+                                <option value="New Zealand">New Zealand</option>
+                                <option value="Nicaragua">Nicaragua</option>
+                                <option value="Niger">Niger</option>
+                                <option value="Nigeria">Nigeria</option>
+                                <option value="Niue">Niue</option>
+                                <option value="Norfolk Island">Norfolk Island</option>
+                                <option value="Northern Mariana Islands">Northern Mariana Islands</option>
+                                <option value="Norway">Norway</option>
+                                <option value="Oman">Oman</option>
+                                <option value="Pakistan">Pakistan</option>
+                                <option value="Palau">Palau</option>
+                                <option value="Panama">Panama</option>
+                                <option value="Papua New Guinea">Papua New Guinea</option>
+                                <option value="Paraguay">Paraguay</option>
+                                <option value="Peru">Peru</option>
+                                <option value="Philippines">Philippines</option>
+                                <option value="Pitcairn">Pitcairn</option>
+                                <option value="Poland">Poland</option>
+                                <option value="Portugal">Portugal</option>
+                                <option value="Puerto Rico">Puerto Rico</option>
+                                <option value="Qatar">Qatar</option>
+                                <option value="Reunion">Reunion</option>
+                                <option value="Romania">Romania</option>
+                                <option value="Russia">Russian Federation</option>
+                                <option value="Rwanda">Rwanda</option>
+                                <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                                <option value="Saint LUCIA">Saint LUCIA</option>
+                                <option value="Saint Vincent">Saint Vincent and the Grenadines</option>
+                                <option value="Samoa">Samoa</option>
+                                <option value="San Marino">San Marino</option>
+                                <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                                <option value="Saudi Arabia">Saudi Arabia</option>
+                                <option value="Senegal">Senegal</option>
+                                <option value="Seychelles">Seychelles</option>
+                                <option value="Sierra">Sierra Leone</option>
+                                <option value="Singapore">Singapore</option>
+                                <option value="Slovakia">Slovakia (Slovak Republic)</option>
+                                <option value="Slovenia">Slovenia</option>
+                                <option value="Solomon Islands">Solomon Islands</option>
+                                <option value="Somalia">Somalia</option>
+                                <option value="South Africa">South Africa</option>
+                                <option value="South Georgia">South Georgia and the South Sandwich Islands</option>
+                                <option value="Span">Spain</option>
+                                <option value="SriLanka">Sri Lanka</option>
+                                <option value="St. Helena">St. Helena</option>
+                                <option value="St. Pierre and Miguelon">St. Pierre and Miquelon</option>
+                                <option value="Sudan">Sudan</option>
+                                <option value="Suriname">Suriname</option>
+                                <option value="Svalbard">Svalbard and Jan Mayen Islands</option>
+                                <option value="Swaziland">Swaziland</option>
+                                <option value="Sweden">Sweden</option>
+                                <option value="Switzerland">Switzerland</option>
+                                <option value="Syria">Syrian Arab Republic</option>
+                                <option value="Taiwan">Taiwan, Province of China</option>
+                                <option value="Tajikistan">Tajikistan</option>
+                                <option value="Tanzania">Tanzania, United Republic of</option>
+                                <option value="Thailand">Thailand</option>
+                                <option value="Togo">Togo</option>
+                                <option value="Tokelau">Tokelau</option>
+                                <option value="Tonga">Tonga</option>
+                                <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                                <option value="Tunisia">Tunisia</option>
+                                <option value="Turkey">Turkey</option>
+                                <option value="Turkmenistan">Turkmenistan</option>
+                                <option value="Turks and Caicos">Turks and Caicos Islands</option>
+                                <option value="Tuvalu">Tuvalu</option>
+                                <option value="Uganda">Uganda</option>
+                                <option value="Ukraine">Ukraine</option>
+                                <option value="United Arab Emirates">United Arab Emirates</option>
+                                <option value="United Kingdom">United Kingdom</option>
+                                <option value="United States">United States</option>
+                                <option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
+                                <option value="Uruguay">Uruguay</option>
+                                <option value="Uzbekistan">Uzbekistan</option>
+                                <option value="Vanuatu">Vanuatu</option>
+                                <option value="Venezuela">Venezuela</option>
+                                <option value="Vietnam">Viet Nam</option>
+                                <option value="Virgin Islands (British)">Virgin Islands (British)</option>
+                                <option value="Virgin Islands (U.S)">Virgin Islands (U.S.)</option>
+                                <option value="Wallis and Futana Islands">Wallis and Futuna Islands</option>
+                                <option value="Western Sahara">Western Sahara</option>
+                                <option value="Yemen">Yemen</option>
+                                <option value="Serbia">Serbia</option>
+                                <option value="Zambia">Zambia</option>
+                                <option value="Zimbabwe">Zimbabwe</option>
+                            </select>
+                            <br />
+                            <h6>Type of Housing</h6>
+                            <br />
+                            <select id="dropdown" asp-for="patient_Contacts[0].Type" class="form-control">
+                                @*<option disabled selected value>Gendere</option>*@
+                                <option value="Private Rental">Private Rental</option>
+                                <option value="Supported Accommodation">Supported Accommodation</option>
+                                <option value="Own">Own</option>
+                                <option value="SIL">SIL</option>
+                            </select>
+                            <br />
+                            <label asp-for="patient_Contacts[0].Start_Date">Start Date</label>
+                            <input type="date" asp-for="patient_Contacts[0].Start_Date" id="dateofbirth">
+                            <br />
+                            <label id="name-label" asp-for="patient_Contacts[0].Security">Security</label>
+                            <input type="text"
+                                   asp-for="patient_Contacts[0].Security"
+                                   id="name"
+                                   class="form-control" />
+                            <br />
+                            <label id="name-label" asp-for="patient_Contacts[0].LivingWith">Living with</label>
+                            <input type="text"
+                                   asp-for="patient_Contacts[0].LivingWith"
+                                   id="name"
+                                   class="form-control" />
+                            <br />
+                            <label id="name-label" asp-for="patient_Contacts[0].AddComment">Comment</label>
+                            <input type="text"
+                                   asp-for="patient_Contacts[0].AddComment"
+                                   id="name"
+                                   class="form-control" />
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <br />
+
+                @*Housing Register Application*@
+
+                <button type="button" class="accordion">Housing Register Application</button>
+                <div class="panel">
+                    <div class="container">
+
+                        <div class="form-group">
+                            <p>Housing Register Application</p>
+                            <h6>Application Type</h6>
+                            <select data-placeholder="--Select Type--" id="dropdown" asp-for="Housing_Register_Application[0].Application_type" class="form-control">
+                                @*<option disabled selected value>Gendere</option>*@
+                                <option value="Shared Supported Accommodation">Shared Supported Accommodation</option>
+                                <option value="Own Home">Femail</option>
+                                <option value="Private Rental">Other</option>
+                                <option value="SIL">SIL</option>
+                                <option value="Supprorted Accommodation">Supprorted Accommodation</option>
+                            </select>
+                            <br />
+                            <h6>Priority Category</h6>
+                            <select data-placeholder="--Select Priority Category--" id="dropdown" asp-for="Housing_Register_Application[0].priority_catogory" class="form-control">
+                                @*<option disabled selected value>Gendere</option>*@
+                                <option value="App Priority Category 1">App Priority Category 1</option>
+                                <option value="App Priority Category 2">App Priority Category 2</option>
+                            </select>
+                            <br />
+                            <h6>Priority Type</h6>
+                            <select data-placeholder="--Select Priority Type--" id="dropdown" asp-for="Housing_Register_Application[0].priority_type" class="form-control">
+                                @*<option disabled selected value>Gendere</option>*@
+                                <option value="Priority Type 1">Priority Type 2</option>
+                                <option value="Priority Type 2">Priority Type2</option>
+                            </select>
+                            <br />
+                            <label id="name-label" asp-for="Housing_Register_Application[0].Date_Submited"> Date Submit</label>
+                            <input type="date"
+                                   asp-for="Housing_Register_Application[0].Date_Submited"
+                                   id="name"
+                                   class="form-control" />
+                            <br />
+                            <h6>Location Submitted</h6>
+                            <select data-placeholder="--Select Location--" id="dropdown" asp-for="Housing_Register_Application[0].Location_Submited" class="form-control">
+                                @*<option disabled selected value>Gendere</option>*@
+                                <option value="Location 1">Location 1</option>
+                                <option value="Location 2">Location 2</option>
+                            </select>
+                            <br />
+                            <label id="name-label" asp-for="Housing_Register_Application[0].Application_number">Application Number</label>
+                            <input type="text"
+                                   asp-for="Housing_Register_Application[0].Application_number"
+                                   id="name"
+                                   class="form-control" />
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+                <br />
+
+                @*Medical*@
+
+                <button type="button" class="accordion">Medical</button>
+                <div class="panel">
+                    <div class="container">
+
+
+                        <div class="form-group">
+                            <p></p>
+
+                            <h6>None</h6>
+                            <div class="row">
+                                <div class="Mcolumn">
+                                    <label>
+                                        <input asp-for="patient_Helths[0].Medical_none"
+                                               value="Yes"
+                                               type="radio"
+                                               class="input-radio"
+                                               checked />Yes
+                                    </label>
+                                    <label>
+                                        <input asp-for="patient_Helths[0].Medical_none"
+                                               value="No"
+                                               type="radio"
+                                               class="input-radio" />No
+                                    </label>
+                                </div>
+                                <div class="Mcolumn">
+                                    <input data-placeholder="--Comment--" type="text"
+                                           asp-for="patient_Helths[0].Medical_none_Comment"
+                                           id="name"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                            <br />
+
+                            <h6>Allergies(Specifiy if any)</h6>
+                            <div class="row">
+                                <div class="Mcolumn">
+                                    <label>
+                                        <input asp-for="patient_Helths[0].Allergies"
+                                               value="Yes"
+                                               type="radio"
+                                               class="input-radio"
+                                               checked />Yes
+                                    </label>
+                                    <label>
+                                        <input asp-for="patient_Helths[0].Allergies"
+                                               value="No"
+                                               type="radio"
+                                               class="input-radio" />No
+                                    </label>
+                                </div>
+                                <div class="Mcolumn">
+                                    <input data-placeholder="--Comment--" type="text"
+                                           asp-for="patient_Helths[0].Allergies_comment"
+                                           id="name"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                            <br />
+
+                            <h6>Skin Condititions (eczema ; psoriasis; dermatities)</h6>
+                            <div class="row">
+                                <div class="Mcolumn">
+                                    <label>
+                                        <input asp-for="patient_Helths[0].Skin_condition"
+                                               value="Yes"
+                                               type="radio"
+                                               class="input-radio"
+                                               checked />Yes
+                                    </label>
+                                    <label>
+                                        <input asp-for="patient_Helths[0].Skin_condition"
+                                               value="No"
+                                               type="radio"
+                                               class="input-radio" />No
+                                    </label>
+                                </div>
+                                <div class="Mcolumn">
+                                    <input data-placeholder="--Comment--" type="text"
+                                           asp-for="patient_Helths[0].Skin_condition_comment"
+                                           id="name"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                            <br />
+
+                            <h6>Diabetes (insulin dependent; client controlled; oral meals)</h6>
+                            <div class="row">
+                                <div class="Mcolumn">
+                                    <label>
+                                        <input asp-for="patient_Helths[0].Diabetes"
+                                               value="Yes"
+                                               type="radio"
+                                               class="input-radio"
+                                               checked />Yes
+                                    </label>
+                                    <label>
+                                        <input data-placeholder="--Comment--" asp-for="patient_Helths[0].Diabetes"
+                                               value="No"
+                                               type="radio"
+                                               class="input-radio" />No
+                                    </label>
+                                </div>
+                                <div class="Mcolumn">
+                                    <input data-placeholder="--Comment--" type="text"
+                                           asp-for="patient_Helths[0].Diabetes_comment"
+                                           id="name"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                            <br />
+
+                            <h6>Chronic pain (back pain;injuries;nerve damage;osteoarthritis)</h6>
+                            <div class="row">
+                                <div class="Mcolumn">
+                                    <label>
+                                        <input asp-for="patient_Helths[0].Chronic_pain"
+                                               value="Yes"
+                                               type="radio"
+                                               class="input-radio"
+                                               checked />Yes
+                                    </label>
+                                    <label>
+                                        <input asp-for="patient_Helths[0].Chronic_pain"
+                                               value="No"
+                                               type="radio"
+                                               class="input-radio" />No
+                                    </label>
+                                </div>
+                                <div class="Mcolumn">
+                                    <input data-placeholder="--Comment--" type="text"
+                                           asp-for="patient_Helths[0].Chronic_pain_comment"
+                                           id="name"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                            <br />
+                            <h6>Epilepsy</h6>
+                            <div class="row">
+                                <div class="Mcolumn">
+                                    <label>
+                                        <input asp-for="patient_Helths[0].Epilepsy"
+                                               value="Yes"
+                                               type="radio"
+                                               class="input-radio"
+                                               checked />Yes
+                                    </label>
+                                    <label>
+                                        <input asp-for="patient_Helths[0].Epilepsy"
+                                               value="No"
+                                               type="radio"
+                                               class="input-radio" />No
+                                    </label>
+                                </div>
+                                <div class="Mcolumn">
+                                    <input data-placeholder="--Comment--" type="text"
+                                           asp-for="patient_Helths[0].Epilepsy_comment"
+                                           id="name"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                            <br />
+                            <h6>Obesity</h6>
+                            <div class="row">
+                                <div class="Mcolumn">
+                                    <label>
+                                        <input asp-for="patient_Helths[0].Obesity"
+                                               value="Yes"
+                                               type="radio"
+                                               class="input-radio"
+                                               checked />Yes
+                                    </label>
+                                    <label>
+                                        <input asp-for="patient_Helths[0].Obesity"
+                                               value="No"
+                                               type="radio"
+                                               class="input-radio" />No
+                                    </label>
+                                </div>
+                                <div class="Mcolumn">
+                                    <input data-placeholder="--Comment--" type="text"
+                                           asp-for="patient_Helths[0].Obesity_comment"
+                                           id="name"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                            <br />
+                            <h6>Infectious Disease(HIV;Hep B;Hep C;STLs)</h6>
+                            <div class="row">
+                                <div class="Mcolumn">
+                                    <label>
+                                        <input asp-for="patient_Helths[0].Infectious_Disease"
+                                               value="Yes"
+                                               type="radio"
+                                               class="input-radio"
+                                               checked />Yes
+                                    </label>
+                                    <label>
+                                        <input asp-for="patient_Helths[0].Infectious_Disease"
+                                               value="No"
+                                               type="radio"
+                                               class="input-radio" />No
+                                    </label>
+                                </div>
+                                <div class="Mcolumn">
+                                    <input data-placeholder="--Comment--" type="text"
+                                           asp-for="patient_Helths[0].Infectious_Disease_comment"
+                                           id="name"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                            <br />
+                            <h6>Respiratory(asthma;Lunga;Cholestoerol)</h6>
+                            <div class="row">
+                                <div class="Mcolumn">
+                                    <label>
+                                        <input asp-for="patient_Helths[0].Repiratory"
+                                               value="Yes"
+                                               type="radio"
+                                               class="input-radio"
+                                               checked />Yes
+                                    </label>
+                                    <label>
+                                        <input asp-for="patient_Helths[0].Repiratory"
+                                               value="No"
+                                               type="radio"
+                                               class="input-radio" />No
+                                    </label>
+                                </div>
+                                <div class="Mcolumn">
+                                    <input data-placeholder="--Comment--" type="text"
+                                           asp-for="patient_Helths[0].Repiratory_comment"
+                                           id="name"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                            <br />
+                            <h6>Cardivascular (Hypertensio;Cholesterol;thrombosis;stroke;heart)</h6>
+                            <div class="row">
+                                <div class="Mcolumn">
+                                    <label>
+                                        <input asp-for="patient_Helths[0].Cardiovscular"
+                                               value="Yes"
+                                               type="radio"
+                                               class="input-radio"
+                                               checked />Yes
+                                    </label>
+                                    <label>
+                                        <input asp-for="patient_Helths[0].Cardiovscular"
+                                               value="No"
+                                               type="radio"
+                                               class="input-radio" />No
+                                    </label>
+                                </div>
+                                <div class="Mcolumn">
+                                    <input data-placeholder="--Comment--" type="text"
+                                           asp-for="patient_Helths[0].Cardiovscular_comment"
+                                           id="name"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                            <br />
+                            <br />
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <br />
+                @*Commencement Issue*@
+
+                <button type="button" class="accordion">Commencement Issue</button>
+                <div class="panel">
+                    <div class="container">
+
+
+                        <div class="form-group">
+
+                            <p>Commencement Issues</p>
+
+                            <label id="name-label" asp-for="Commencement_Issuse[0].Program_Details_and_Support_needs">Program details and support needs</label>
+                            <input type="text"
+                                   asp-for="Commencement_Issuse[0].Program_Details_and_Support_needs"
+                                   id="name"
+                                   class="form-control" />
+                            <br />
+
+                            <div class="row">
+                                <div class="Ccolumn">
+                                    <h6>Issues</h6>
+                                    <br />
+                                    <select id="dropdown" asp-for="Commencement_Issuse[0].Issues" class="form-control">
+                                        <option value="Education/Traning">Education/Traning</option>
+                                        <option value="Family/Community Support">Family/Community Support</option>
+                                        <option value="Employeement">Employeement</option>
+                                        <option value="Living Skills">Living Skills</option>
+                                        <option value="Housing/Accomodation">Housing/Accomodation</option>
+                                        <option value="Advocacy">Advocacy</option>
+                                        <option value="Anger">Anger</option>
+                                        <option value="Arts/Cultural development">Arts/Cultural development</option>
+                                        <option value="Counselling">Counselling</option>
+                                        <option value="Discrimination Including racial">Discrimination Including racial</option>
+                                    </select>
+                                </div>
+                                <br />
+                                <div class="Mcolumn">
+                                    <h6>Selected Other Presenting Issues</h6>
+                                    <input type="text"
+                                           asp-for="Commencement_Issuse[0].Select_Other_issues"
+                                           id="name"
+                                           class="form-control" />
+                                </div>
+
+                            </div>
+                            <br />
+                            <br />
+                            <h6>Comment</h6>
+                            <input type="text"
+                                   asp-for="Commencement_Issuse[0].Comments"
+                                   id="name"
+                                   class="form-control" />
+                        </div>
+                        <br />
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+                <br />
+
+                @*Files*@
+
+                <button type="button" class="accordion">Files</button>
+                <div class="panel">
+                    <div class="container">
+
+
+
+
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <br />
+            <div class="col-md-12">
+                @*Privacu,Consent,Right and Responsibilities*@
+
+                <button type="button" class="accordion">Privacu,Consent,Right and Responsibilities*</button>
+                <div class="panel">
+                    <div class="container">
+
+
+                        <div class="row">
+                            <div class="pcolumn">
+                                <h6>01. Privacy and Consent</h6>
+                                <h6> Privacy and Consent</h6>
+                                <br />
+
+                                <h6>02. Rights and Responsibilities</h6>
+                                <h6>Rights and Responsiblities</h6>
+                                <br />
+
+                                <h6>03. Exit Interview Consent</h6>
+                                <h6>Consent at intake for exit interview</h6>
+                                <br />
+
+                                <h6>04. Complaints</h6>
+                                <h6>Complaints explained and brochure issued</h6>
+                                <br />
+
+                                <h6>05. Medical Consent</h6>
+                                <h6>Medical and Dental Consent</h6>
+                                <br />
+
+                                <h6>06. Information Sharing with third parties</h6>
+                                <h6>Consent to Release information to third parties</h6>
+                                <br />
+                            </div>
+                            <div class="pcolumn">
+                                <h6>Date signed</h6>
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+
+                                <h6>  Date explained </h6>
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+
+                                <h6>Consent at exit </h6>
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+
+                                <h6>  Date explained</h6>
+                                <br />
+                                <br />
+                                <br />
+
+
+
+                                <h6> Medical Consent </h6>
+                                <br />
+                                <br />
+                                <br />
+
+
+                                <h6>  Information Sharing with third parties  </h6>
+                                <br />
+                                <br />
+
+
+                            </div>
+                            <div class="pcolumn">
+
+
+                                <select id="dropdown" asp-for="summerisings[0].PrivacyAndConsent_Date_Signed" class="form-control">
+                                    @*<option disabled selected value>Select Status</option>*@
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                                <br />
+                                <br />
+                                <br />
+                                <select id="dropdown" asp-for="summerisings[0].RightAndResponsibilities_DateExplained" class="form-control">
+                                    @*<option disabled selected value>Select Status</option>*@
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                                <br />
+                                <br />
+                                <br />
+
+
+                                <select id="dropdown" asp-for="summerisings[0].ExitInterviewConsent_ConsentAtExite" class="form-control">
+                                    @*<option disabled selected value>Select Status</option>*@
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                                <br />
+                                <br />
+                                <br />
+
+                                <select id="dropdown" asp-for="summerisings[0].Complaints_dateExplained" class="form-control">
+                                    @*<option disabled selected value>Select Status</option>*@
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                                <br />
+                                <br />
+                                <br />
+
+                                <select id="dropdown" asp-for="summerisings[0].MedicalConsent_MedicalConsent" class="form-control">
+                                    @*<option disabled selected value>Select Status</option>*@
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                                <br />
+                                <br />
+                                <br />
+                                <select id="dropdown" asp-for="summerisings[0].InformationSharingWithThirdParties_informationSharingWithThirdParties" class="form-control" required>
+                                    @*<option disabled selected value>Select Status</option>*@
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+
+
+
+                            </div>
+                            <div class="pcolumn">
+
+                                <input type="date" asp-for="summerisings[0].PrivacyAndConsent_Date" id="dateofbirth">
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+
+
+                                <input type="date" asp-for="summerisings[0].RightAndResponsibilities_Date" id="dateofbirth">
+                                <br />
+                                <br />
+                                <br />
+
+
+                                <input type="date" asp-for="summerisings[0].ExitInterviewConsent_Date" id="dateofbirth">
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+
+
+                                <input type="date" asp-for="summerisings[0].Complaints_Date" id="dateofbirth">
+                                <br />
+                                <br />
+                                <br />
+
+
+                                <input type="date" asp-for="summerisings[0].MedicalConsent_Date" id="dateofbirth">
+                                <br />
+                                <br />
+                                <br />
+
+                                <input type="date" asp-for="summerisings[0].InformationSharingWithThirdParties_Date" id="dateofbirth">
+                                <br />
+                            </div>
+                            <div class="pcolumn">
+                                <h6> If no, reason </h6>
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+
+                                <h6> If no, reason </h6>
+                                <br />
+                                <br />
+                                <br />
+
+
+                                <h6> Comment </h6>
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+
+                                <h6>
+                                    If no, reason
+                                </h6>
+                                <br />
+                                <br />
+                                <br />
+
+
+                                <h6>
+                                    Consent
+                                </h6>
+                                <br />
+                                <br />
+                                <br />
+
+                                <h6> Consent to share information </h6>
+                                <br />
+                            </div>
+                            <div class="pcolumn">
+                                <input type="text"
+                                       asp-for="summerisings[0].PrivacyAndConsent_Reason"
+                                       id="name"
+                                       class="form-control"
+                                       required />
+                                <br />
+                                <br />
+                                <br />
+
+                                <input type="text"
+                                       asp-for="summerisings[0].RightAndResponsibilities_Reason"
+                                       id="name"
+                                       class="form-control"
+                                       required />
+                                <br />
+                                <br />
+                                <br />
+
+                                <input type="text"
+                                       asp-for="summerisings[0].ExitInterviewConsent_Comment"
+                                       id="name"
+                                       class="form-control"
+                                       required />
+                                <br />
+                                <br />
+                                <br />
+
+                                <input type="text"
+                                       asp-for="summerisings[0].Complaints_Reason"
+                                       id="name"
+                                       class="form-control"
+                                       required />
+                                <br />
+                                <br />
+                                <br />
+
+                                <input type="text"
+                                       asp-for="summerisings[0].MedicalConsent_Consent"
+                                       id="name"
+                                       class="form-control"
+                                       required />
+                                <br />
+                                <br />
+                                <br />
+
+                                <input type="text"
+                                       asp-for="summerisings[0].InformationSharingWithThirdParties_ConsentToShareInformation"
+                                       id="name"
+                                       class="form-control"
+                                       required />
+                                <br />
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+                <br />
+                @*Program Outcomes
+                *@
+
+                <button type="button" class="accordion">
+                    Program Outcomes
+                </button>
+                <div class="panel">
+                    <div class="container">
+
+                        <div class="row">
+                            <div class="Mcolumn">
+                                <h6>Our Way of Working Outcomes</h6>
+                                <h6>Date Completed</h6>
+
+                            </div>
+                            <div class="Mcolumn">
+                                <input type="date"
+                                       asp-for="summerisings[0].ourWayOfWorkingOutComes_DateCompleted"
+                                       id="name"
+                                       class="form-control"
+                                       required />
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="prcolumn">
+                                <h6>Primary mode of service while involved with program</h6>
+                                <br />
+                                <br />
+                                <h6>Participant's level of engagement in this program</h6>
+
+                            </div>
+                            <div class="prcolumn">
+                                <select data-placeholder="--Select--" id="dropdown" asp-for="summerisings[0].Primary_model_of_service_while_Involved_with_program_selection" class="form-control">
+                                    @*<option disabled selected value>Gendere</option>*@
+                                    <option value="Case Management">Case Management</option>
+                                    <option value="Mode 2">Mode 2</option>
+                                    <option value="Mode 3">Mode 3</option>
+                                </select>
+                                <br />
+                                <br />
+                                <select data-placeholder="--Select--" id="dropdown" asp-for="summerisings[0].Participants_level_of_Engagement_In_this_Program_sellection" class="form-control">
+                                    @*<option disabled selected value>Gendere</option>*@
+                                    <option value="Level 1">Level 1</option>
+                                    <option value="Level 2">Level 2</option>
+                                    <option value="Level 3">Level 3</option>
+                                </select>
+                            </div>
+                            <div class="prcolumn">
+                                <input data-placeholder="--Comment--" type="text"
+                                       asp-for="summerisings[0].Primary_model_of_service_while_Involved_with_program_Comment"
+                                       id="name"
+                                       class="form-control" />
+                                <br />
+                                <br />
+                                <input data-placeholder="--Comment--" type="text"
+                                       asp-for="summerisings[0].Participants_level_of_Engagement_In_this_Program_Comment"
+                                       id="name"
+                                       class="form-control" />
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <br />
+                @*Rate from Program Commencement*@
+
+                <button type="button" class="accordion">
+                    Rate from Program Commencement
+                </button>
+                <div class="panel">
+                    <div class="container">
+
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table badge-dark">
+                                        <thead>
+                                            <tr>
+                                                <th> </th>
+                                                <th>Sufficient at commencement</th>
+                                                <th>Worse</th>
+                                                <th>No Change</th>
+                                                <th>Minimal Improvement</th>
+                                                <th>Moderate Improvement</th>
+                                                <th>Substantial Improvement</th>
+                                                <th>Comments</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tr>
+                                            <td>View of self (identity/potential)</td>
+                                            <td><input type="radio" asp-for="summerisings[0].View_of_self_Sufficient_at_Commencement" id="name" class="form-control" value="Yes" /></td>
+                                            <td><input type="radio" asp-for="summerisings[0].View_of_self_Worse" id="name" class="form-control" value="Yes" /></td>
+                                            <td><input type="radio" asp-for="summerisings[0].View_of_self_NoChange" id="name" class="form-control" value="Yes" /></td>
+                                            <td><input type="radio" asp-for="summerisings[0].View_of_self_MinimalImprovement" id="name" class="form-control" value="Yes" /></td>
+                                            <td><input type="radio" asp-for="summerisings[0].View_of_self_ModerateImprovement" id="name" class="form-control" value="Yes" /></td>
+                                            <td><input type="radio" asp-for="summerisings[0].View_of_self_SubstantialImprovement" id="name" class="form-control" value="Yes" /></td>
+                                            <td><input type="text" data-placeholder="--Comment--" asp-for="summerisings[0].View_of_self_Comments" id="name" class="form-control" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Connection to family and significant people</td>
+                                            <td><input type="radio" asp-for="summerisings[0].Connection_to_family_and_Significant_people_Sufficient_at_Commencement" id="name" class="form-control" value="Yes" /></td>
+                                            <td><input type="radio" asp-for="summerisings[0].Connection_to_family_and_Significant_people_Worse" id="name" class="form-control" value="Yes" /></td>
+                                            <td><input type="radio" asp-for="summerisings[0].Connection_to_family_and_Significant_people_NoChange" id="name" class="form-control" value="Yes" /></td>
+                                            <td><input type="radio" asp-for="summerisings[0].Connection_to_family_and_Significant_people_MinimalImprovement" id="name" class="form-control" value="Yes" /></td>
+                                            <td><input type="radio" asp-for="summerisings[0].Connection_to_family_and_Significant_people_ModerateImprovement" id="name" class="form-control" value="Yes" /></td>
+                                            <td><input type="radio" asp-for="summerisings[0].Connection_to_family_and_Significant_people_SubstantialImprovement" id="name" class="form-control" value="Yes" /></td>
+                                            <td><input type="text" data-placeholder="--Comment--" asp-for="summerisings[0].Connection_to_family_and_Significant_people_View_of_self_Comments" id="name" class="form-control" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>View of future</td>
+                                            <td><input type="radio" asp-for="summerisings[0].View_of_future_Sufficient_at_Commencement" id="name" class="form-control" value="Yes" /></td>
+                                            <td><input type="radio" asp-for="summerisings[0].View_of_future_Worse" id="name" class="form-control" value="Yes" /></td>
+                                            <td><input type="radio" asp-for="summerisings[0].View_of_future_NoChange" id="name" class="form-control" value="Yes" /></td>
+                                            <td><input type="radio" asp-for="summerisings[0].View_of_future_MinimalImprovement" id="name" class="form-control" value="Yes" /></td>
+                                            <td><input type="radio" asp-for="summerisings[0].View_of_future_ModerateImprovement" id="name" class="form-control" value="Yes" /></td>
+                                            <td><input type="radio" asp-for="summerisings[0].View_of_future_SubstantialImprovement" id="name" class="form-control" value="Yes" /></td>
+                                            <td><input type="text" data-placeholder="--Comment--" asp-for="summerisings[0].View_of_future_Comments" id="name" class="form-control" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Test question</td>
+                                            <td><input type="radio" asp-for="summerisings[0].Test_question_Sufficient_at_Commencement" id="name" class="form-control" value="Yes" /></td>
+                                            <td><input type="radio" asp-for="summerisings[0].Test_question_Worse" id="name" class="form-control" value="Yes" /></td>
+                                            <td><input type="radio" asp-for="summerisings[0].Test_question_NoChange" id="name" class="form-control" value="Yes" /></td>
+                                            <td><input type="radio" asp-for="summerisings[0].Test_question_MinimalImprovement" id="name" class="form-control" value="Yes" /></td>
+                                            <td><input type="radio" asp-for="summerisings[0].Test_question_ModerateImprovement" id="name" class="form-control" value="Yes" /></td>
+                                            <td><input type="radio" asp-for="summerisings[0].Test_question_SubstantialImprovement" id="name" class="form-control" value="Yes" /></td>
+                                            <td><input type="text" data-placeholder="--Comment--" asp-for="summerisings[0].Test_question_Comments" id="name" class="form-control" /></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+
+                @*Exit Information
+                *@
+
+                <button type="button" class="accordion">
+                    Exit Information
+
+                </button>
+                <div class="panel">
+                    <div class="container">
+
+                        <div class="row">
+                            <div class="Mcolumn">
+                                <h6>Date of Exit</h6>
+
+
+                            </div>
+                            <div class="Mcolumn">
+                                <input type="date"
+                                       asp-for="summerisings[0].Date_of_exit"
+                                       id="name"
+                                       class="form-control" />
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="prcolumn">
+                                <h6>Reason for exit</h6>
+                                <br />
+                                <br />
+                                <h6>Goals achive at exit</h6>
+
+                            </div>
+                            <div class="prcolumn">
+                                <select data-placeholder="--Select if participant is exiting--" id="dropdown" asp-for="summerisings[0].Reason_of_exit_Selection" class="form-control">
+                                    @*<option disabled selected value>Gendere</option>*@
+                                    <option value="No happy with the service">No happy with the service</option>
+                                    <option value="No happy with NLCS staff">No happy with NLCS staff</option>
+                                    <option value="Traning a different provider">Traning a different provider</option>
+                                    <option value="Plane not renewed">Plane not renewed</option>
+                                </select>
+                                <br />
+                                <br />
+                                <select data-placeholder="--Select if participant is exiting--" id="dropdown" asp-for="summerisings[0].Goals_Achived_at_exit_Selection" class="form-control">
+                                    @*<option disabled selected value>Gendere</option>*@
+                                    <option value="Type 1">Type 1</option>
+                                    <option value="Type 2">Type 2</option>
+
+                                </select>
+                            </div>
+                            <div class="prcolumn">
+                                <input data-placeholder="--Comment--" type="text"
+                                       asp-for="summerisings[0].Reason_of_exit_Comment"
+                                       id="name"
+                                       class="form-control" />
+                                <br />
+                                <br />
+                                <input data-placeholder="--Comment--" type="text"
+                                       asp-for="summerisings[0].Goals_Achived_at_exit_Comment"
+                                       id="name"
+                                       class="form-control" />
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="form-group">
+            <button type="submit" name="submit" class="submit-button">
+                Submit
+            </button>
+        </div>
+    </form>
+
+</div>
+
+
+
+
+

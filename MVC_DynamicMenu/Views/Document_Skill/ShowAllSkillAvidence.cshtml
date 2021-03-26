@@ -1,0 +1,281 @@
+﻿@model MyProfile
+@{
+    ViewData["Title"] = "Home page";
+}
+<head>
+    <link href="~/css/Addfile.css" rel="stylesheet" />
+</head>
+<div class="container">
+    <header class="header">
+        <h1 id="title" class="text-center">My Profile</h1>
+        <p id="description" class="description text-center">
+
+        </p>
+    </header>
+
+
+    <form asp-action="UpdateProfileInfo" id="survey-form">
+        <div class="form-group">
+            <div class="container">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h6>First Name</h6>
+                            <br />
+                            <br />
+                            <h6>Last Name</h6>
+                            <br />
+                            <br />
+                            <h6>Date Of Birth</h6>
+                            <br />
+
+                            <h6>Gender</h6>
+                            <br />
+
+                            <h6>Mobile Number</h6>
+                            <br />
+                            <br />
+                            <h6>NOK</h6>
+                            <br />
+                            <br />
+                            <h6>Address</h6>
+                            <br />
+                            <br />
+                            <br />
+                            <h6>Driver License</h6>
+                            <br />
+
+                            <h6>Probation</h6>
+                            <br />
+                            <br />
+                            <h6>Rest Authenticator</h6>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" asp-for="First_name"
+                                   name="name"
+                                   id="name"
+                                   class="form-control"
+                                   required />
+                            <br />
+                            <input type="text"asp-for="Last_name"
+                                   name="name"
+                                   id="name"
+                                   class="form-control"
+                                   required />
+                            <br />
+                            <input type="date"asp-for="DOB"
+                                   name="name"
+                                   id="name"
+                                   class="form-control"
+                                   required />
+
+                            <select id="dropdown" asp-for="Gender" name="role" class="form-control" required>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Fax</option>
+                            </select>
+                            <br />
+                            <input type="number" asp-for="Mobile_number"
+                                   name="name"
+                                   id="name"
+                                   class="form-control"
+                                   required />
+                            <br />
+                            <input type="text" asp-for="NOK"
+                                   name="name"
+                                   id="name"
+                                   class="form-control"
+                                   required />
+                            <br />
+                            <textarea type="text" asp-for="Address"
+                                      name="name"
+                                      id="name"
+                                      class="form-control"
+                                      required></textarea>
+                            <br />
+                            <input type="text" asp-for="Driver_License"
+                                   name="name"
+                                   id="name"
+                                   class="form-control"
+                                   required />
+                            <br />
+                            <input type="text" asp-for="Probation"
+                                   name="name"
+                                   id="name"
+                                   class="form-control"
+                                   required />
+                            <br />
+
+                            <select id="dropdown" asp-for="Rest_Authentication" name="role" class="form-control" required>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                                <option value="Other">Fax</option>
+                            </select>
+
+
+                        </div>
+                        <div class="col-md-12">
+                            @*Profile picture*@
+
+                            <button type="button" class="accordion">Profile</button>
+                            <div class="panel">
+                                <div class="container">
+
+                                    <div style="float:left">
+                                        <img src="/css/img/th.jpg" alt="John" style="width:100%">
+                                        <h1>John Doe</h1>
+                                    </div>
+                                    <div style="float:right">
+                                        <label>Employee ID</label>
+                                        <input placeholder="45s2s2s" type="text"
+                                               name="name"
+                                               id="name"
+                                               class="form-control"
+                                               required />
+                                        <br />
+                                        <label>Office</label>
+                                        <input placeholder="Melbourne" type="text"
+                                               name="name"
+                                               id="name"
+                                               class="form-control"
+                                               required />
+                                        <br />
+                                        <label>Department</label>
+                                        <input placeholder="SE" type="text"
+                                               name="name"
+                                               id="name"
+                                               class="form-control"
+                                               required />
+                                        <br />
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+                            <br />
+                            <br />
+                            <button type="button" class="accordion">Skills Evidance</button>
+                            <div class="panel">
+                                <div class="container">
+                                    <div class="text-right">
+                                        <input onkeyup="myFunction()" id="myInput" type="text" name="text" class="search" placeholder="Search here!">
+
+                                        <button type="button" onclick='window.location.href = ""' class="btn btn-primary">+Add Document</button>
+                                    </div>
+                                    <br />
+
+                                    <form id="survey-form">
+
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <table class="table badge-light" id="myTable">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Doc</th>
+                                                            <th>Type</th>
+                                                            <th>Cert No</th>
+                                                            <th>Completency</th>
+                                                            <th>Date Completed</th>
+                                                            <th>Expiry Date</th>
+                                                            <th>Checked By</th>
+                                                            <th>Expiry Alert</th>
+                                                        </tr>
+                                                    </thead>
+                                                    @*@foreach (var item in Model)
+                                                    {
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td>
+                                                                <a asp-controller="Document_Skill" asp-action="ViewDocument_Skill" asp-route-id="">View</a>
+                                                                <a asp-controller="Document_Skill" asp-action="UpdateDocument_Skill" asp-route-id="">Update</a>
+                                                                <a asp-controller="Document_Skill" asp-action="DeleteDocument_Skill" asp-route-id="">Delete</a>
+                                                            </td>
+                                                        </tr>
+                                                    }*@
+
+
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <script type="text/javascript">
+                                            const projectName = 'survey-form';
+
+                                        </script>
+                                        @section Scripts{
+                                            <script>
+                                                function myFunction() {
+                                                    var input, filter, table, tr, td, i, txtValue;
+                                                    input = document.getElementById("myInput");
+                                                    filter = input.value.toUpperCase();
+                                                    table = document.getElementById("myTable");
+                                                    tr = table.getElementsByTagName("tr");
+                                                    for (i = 0; i < tr.length; i++) {
+                                                        td = tr[i].getElementsByTagName("td")[1];
+                                                        if (td) {
+                                                            txtValue = td.textContent || td.innerText;
+                                                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                                                tr[i].style.display = "";
+                                                            } else {
+                                                                tr[i].style.display = "none";
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            </script>
+
+
+                                        }
+                                    </form>
+
+                                </div>
+                            </div>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+
+                            <div>
+                                <div style="float:left"><button type="submit" class="btn btn-secondary" onClick="return false;">Cancel</button></div>
+                                <div style="float:right"><button type="submit" class="btn btn-primary">Update</button></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <button type="submit" name="submit" class="submit-button">
+                    Submit
+                </button>
+            </div>
+
+
+            <script type="text/javascript">
+                const projectName = 'survey-form';
+
+            </script>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+

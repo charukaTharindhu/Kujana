@@ -1,0 +1,137 @@
+﻿@model AddNewFoodAndFluid
+@using Newtonsoft.Json;
+@using Microsoft.AspNetCore.Http;
+@{
+    ViewData["Title"] = "";
+    List<Patient> cli = JsonConvert.DeserializeObject<List<Patient>>(Context.Session.GetString("FoodsAndFluids"));
+    string loggeduser = Context.Session.GetString("loggedname");
+}
+<head>
+    <link href="~/css/Addfile.css" rel="stylesheet" />
+</head>
+<div class="container">
+    <header class="header">
+        <h1 id="title" class="text-center">Add A New Food And Fluid</h1>
+        <p id="description" class="description text-center">
+
+        </p>
+    </header>
+    <form asp-action="AddNewFoodAndFluid" id="survey-form">
+        <div class="form-group">
+            <label id="name-label" for="name">Select Participant</label>
+            <input type="text"
+                   name="name"
+                   id="myInput"
+                   class="form-control"
+                   placeholder="Enter name"
+                   onkeyup="myFunction()"
+                   required />
+        </div>
+
+        <label asp-for="Start_date">Start Date</label>
+        <input type="date" asp-for="Start_date" id="dateofbirth">
+
+        <label asp-for="End_date">End Date</label>
+        <input type="date" asp-for="End_date" id="dateofbirth">
+
+
+
+        <div class="form-group">
+
+
+            <h6>Breakfast</h6>
+            <textarea id="comments"
+                      class="input-textarea"
+                      asp-for="Breakfast"></textarea>
+
+
+            <h6>Lunch</h6>
+            <textarea id="comments"
+                      class="input-textarea"
+                      asp-for="Lunch"></textarea>
+
+            <h6>Dinner</h6>
+            <textarea id="comments"
+                      class="input-textarea"
+                      asp-for="Diner"></textarea>
+
+
+            <h6>Additional Food</h6>
+            <textarea id="comments"
+                      class="input-textarea"
+                      asp-for="Additional_Food"></textarea>
+
+
+            <h6>Breakfast Fluid</h6>
+            <textarea id="comments"
+                      class="input-textarea"
+                      asp-for="Breakfast_Fluid"></textarea>
+
+            <h6>Lunch Fluid</h6>
+            <textarea id="comments"
+                      class="input-textarea"
+                      asp-for="Lunch_Fluid"></textarea>
+
+            <h6>Dinner Fluid</h6>
+            <textarea id="comments"
+                      class="input-textarea"
+                      asp-for="Diner_Fluid"></textarea>
+
+            <h6>Total Calories</h6>
+            <textarea id="comments"
+                      class="input-textarea"
+                      asp-for="Toal_Calories"></textarea>
+
+        </div>
+        <div class="form-group">
+            <p>Completion & Sign-off</p>
+            <label id="name-label" asp-for="Staf_Name">Staff Member Name</label>
+            <input type="text"
+                   asp-for="Staf_Name"
+                   id="name"
+                   value="@loggeduser"
+                   readonly
+                   class="form-control"
+                   placeholder="Select Staff"
+                   required />
+        </div>
+
+        <div class="form-group">
+            <button type="submit" id="submit" class="submit-button">
+                Submit
+            </button>
+        </div>
+        <script type="text/javascript">
+            const projectName = 'survey-form';
+
+        </script>
+
+        @section Scripts{
+            <script>
+                function myFunction() {
+                    var input, filter, table, tr, td, i, txtValue;
+                    input = document.getElementById("myInput");
+                    filter = input.value.toUpperCase();
+                    table = document.getElementById("myTable");
+                    tr = table.getElementsByTagName("tr");
+                    for (i = 0; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[1];
+                        if (td) {
+                            txtValue = td.textContent || td.innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                            } else {
+                                tr[i].style.display = "none";
+                            }
+                        }
+                    }
+                }
+            </script>
+        }
+    </form>
+</div>
+
+
+
+
+

@@ -1,0 +1,509 @@
+﻿@model NewCaseNote
+@using Newtonsoft.Json;
+@using Microsoft.AspNetCore.Http;
+@{
+    ViewData["Title"] = "AddNewClient";
+    List<Patient> cli = JsonConvert.DeserializeObject<List<Patient>>(Context.Session.GetString("note"));
+}
+<head>
+    <link href="~/css/Addfile.css" rel="stylesheet" />
+</head>
+<div class="container">
+    <header class="header">
+        <h1 id="title" class="text-center">New Note</h1>
+        <p id="description" class="description text-center">
+
+        </p>
+    </header>
+
+    <form asp-action="AddNewCaseNote" id="survey-form">
+        <div class="row">
+            <div class="col-md-6">
+
+
+                @*Goals Achieved
+                *@
+
+
+                <button type="button" class="accordion">Goals Achieved</button>
+                <div class="panel">
+                    <div class="form-group">
+
+
+                        <h6>
+                            Goals Achieved
+                        </h6>
+                        <textarea id="comments"
+                                  class="input-textarea"
+                                  asp-for="Goals_achieved">
+
+                         </textarea>
+                    </div>
+                </div>
+
+                <br />
+                @*Attachments
+                *@
+
+
+                <button type="button" class="accordion">Attachments</button>
+                <div class="panel">
+                    <div class="form-group">
+
+
+                        <h6>
+                            Attachments
+                        </h6>
+                        <textarea id="comments"
+                                  class="input-textarea"
+                                  asp-for="Attachement">
+
+                         </textarea>
+
+                    </div>
+
+                </div>
+
+                <br />
+                <br />
+
+            </div>
+            <br />
+            <br />
+            <div class="col-md-6">
+
+                @*Main*@
+
+
+                <button type="button" class="accordion">Main</button>
+                <div class="panel">
+                    <div class="form-group">
+
+
+                        <h6>Participant</h6>
+                        <br />
+                        <select data-placement="--Select Your Participant--" id="dropdown" asp-for="Participant" class="form-control" required>
+                            @*<option disabled selected value>Gendere</option>*@
+                            <option value="student">Select Your Participant</option>
+                        </select>
+                        <br />
+
+                        <label asp-for="Date">Date</label>
+                        <br />
+                        <input type="date" asp-for="Date" id="dateofbirth">
+                        <br />
+
+                        <h6>AM Staff</h6>
+                        <br />
+                        <select id="dropdown" asp-for="AM_staff" class="form-control" required>
+                            @*<option disabled selected value>Gendere</option>*@
+                            <option value="Akwele Acquah">Akwele Acquah</option>
+                            <option value="Takudzwa Matsatsa">Takudzwa Matsatsa</option>
+                            <option value="Anju George">Anju George</option>
+                            <option value="Janet Kirubi">Janet Kirubi</option>
+                            <option value="Maxwell EDIZIE">Maxwell EDIZIE</option>
+                            <option value="Faida Mushegero">Faida Mushegero</option>
+                            <option value="Vincent Masuku">Vincent Masuku</option>
+                            <option value="Letty Hearburns">Letty Hearburns</option>
+                            <option value="Jasmine Ali">Jasmine Ali</option>
+                            <option value="Prince Markedenge">Prince Markedenge</option>
+                            <option value="Linda sutton">Linda sutton</option>
+                            <option value="Joy Mathew">Joy Mathew</option>
+                            <option value="Prince Test">Prince Test</option>
+                            <option value="Micheal Masatsa">Micheal Masatsa</option>
+                            <option value="Lisa FEHOKO">Lisa FEHOKO</option>
+                            <option value="Tom Ondicho">Tom Ondicho</option>
+
+                        </select>
+                        <br />
+
+                        <label id="name-label" asp-for="Duration_time">Duration Hours</label>
+                        <br />
+                        <input data-placeholder="Duration Hours" type="number"
+                               asp-for="Duration_time"
+                               id="name"
+                               class="form-control"
+                               required />
+                        <br />
+
+                        <h6>Night Shift</h6>
+                        <br />
+                        <select data-placeholder="--Select--" id="dropdown" asp-for="Night_shift" class="form-control" required>
+                            @*<option disabled selected value>Gendere</option>*@
+                            <option value="student">Active Night </option>
+                            <option value="student">Sleep Over</option>
+
+
+                        </select>
+                        <br />
+
+                        <h6>Program</h6>
+                        <br />
+                        <select data-placeholder="--Program--" id="dropdown" asp-for="Program" class="form-control" required>
+                            @*<option disabled selected value>Gendere</option>*@
+                            <option value="NDIS">Select Contact Type</option>
+                            <option value="Respite">Phone</option>
+                            <option value="SIL">Face to Face</option>
+                            <option value="Short Term Accommodation">Did not Attend</option>
+                            <option value="student">Email</option>
+
+
+                        </select>
+                        <br />
+
+                        <h6>Sticky Note?</h6>
+                        <label>
+                            <input asp-for="Stick_note"
+                                   value="Yes"
+                                   type="radio"
+                                   class="input-radio"
+                                   checked />Yes
+                        </label>
+                        <br />
+                        <label>
+                            <input asp-for="Stick_note"
+                                   value="No"
+                                   type="radio"
+                                   class="input-radio" />No
+                        </label>
+                        <br />
+
+                        <h6>PM Staff</h6>
+                        <br />
+                        <select id="dropdown" asp-for="PM_Staff" class="form-control" required>
+                            @*<option disabled selected value>Gendere</option>*@
+                            <option value="Akwele Acquah">Akwele Acquah</option>
+                            <option value="Takudzwa Matsatsa">Takudzwa Matsatsa</option>
+                            <option value="Anju George">Anju George</option>
+                            <option value="Janet Kirubi">Janet Kirubi</option>
+                            <option value="Maxwell EDIZIE">Maxwell EDIZIE</option>
+                            <option value="Faida Mushegero">Faida Mushegero</option>
+                            <option value="Vincent Masuku">Vincent Masuku</option>
+                            <option value="Letty Hearburns">Letty Hearburns</option>
+                            <option value="Jasmine Ali">Jasmine Ali</option>
+                            <option value="Prince Markedenge">Prince Markedenge</option>
+                            <option value="Linda sutton">Linda sutton</option>
+                            <option value="Joy Mathew">Joy Mathew</option>
+                            <option value="Prince Test">Prince Test</option>
+                            <option value="Micheal Masatsa">Micheal Masatsa</option>
+                            <option value="Lisa FEHOKO">Lisa FEHOKO</option>
+                            <option value="Tom Ondicho">Tom Ondicho</option>
+
+
+                        </select>
+                        <br />
+
+
+                        <label id="name-label" asp-for="Minutes">Minutes</label>
+                        <br />
+                        <input data-placeholder="Duration Minutes" type="number"
+                               asp-for="Minutes"
+                               id="name"
+                               class="form-control"
+                               required />
+                        <br />
+
+                        <h6>Contact Type</h6>
+                        <br />
+                        <select data-placeholder="--Select Cotact Type--" id="dropdown" asp-for="Contact_type" class="form-control" required>
+                            @*<option disabled selected value>Gendere</option>*@
+                            <option value="Phone">Phone</option>
+                            <option value="Face to face">Face to face</option>
+                            <option value="Did not attend">Did not attend</option>
+                            <option value="Email">Email</option>
+                            <option value="Group Conference">Group Conference</option>
+                            <option value="Mail">Mail</option>
+                            <option value="Internet/Online forms">Internet/Online forms</option>
+                            <option value="Skype">Skype</option>
+                            <option value="Text">Text</option>
+                            <option value="Zoom Meeting">Zoom Meeting</option>
+
+
+                        </select>
+                        <br />
+                        <h6>With</h6>
+                        <br />
+                        <select data-placeholder="--Contacted?--" id="dropdown" asp-for="with" class="form-control" required>
+                            @*<option disabled selected value>Gendere</option>*@
+                            <option value="Participant">Participant</option>
+                            <option value="Family member">Family member</option>
+                            <option value="3rd Party">3rd Party</option>
+                            <option value="Public Guardian">Public Guardian</option>
+                            <option value="Partners">Partners</option>
+                            <option value="Support Coordinator">Support Coordinator</option>
+                        </select>
+                        <br />
+
+                        <h6>Referral To</h6>
+                        <br />
+                        <select data-placeholder="--Referre to?--" id="dropdown" asp-for="Referral_to" class="form-control" required>
+                            @*<option disabled selected value>Gendere</option>*@
+                            <option value="Hospital">Hospital</option>
+                            <option value="Police">Police</option>
+                        </select>
+                        <br />
+                        <label id="name-label" asp-for="Brokerage">Brokerage</label>
+                        <br />
+                        <input data-placeholder="$" type="number"
+                               asp-for="Brokerage"
+                               id="name"
+                               class="form-control"
+                               required />
+                        <br />
+
+                    </div>
+
+                </div>
+
+                <br />
+
+                @*Recent Case Notes
+                *@
+
+                <button type="button" class="accordion">Recent Case Notes</button>
+                <div class="panel">
+                    <div class="form-group">
+
+
+                        <h6>
+                            Recent Case Notes
+                        </h6>
+                        <textarea id="comments"
+                                  class="input-textarea"
+                                  asp-for="Recent_case_note">
+
+                         </textarea>
+
+                    </div>
+                </div>
+
+                <br />
+
+            </div>
+        </div>
+        @*Daily Checks*@
+
+
+        <button type="button" class="accordion">
+            Daily Checks
+        </button>
+        <div class="panel">
+            <div class="container">
+
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table badge-dark">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Morning</th>
+                                        <th>Afternoon</th>
+                                        <th>Evening</th>
+
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td> What mood the participant was in?</td>
+                                    <td><input data-placeholder="--Comment--" type="text" asp-for="What_mood_the_participant_in_Morning" id="name" class="form-control" /></td>
+                                    <td><input data-placeholder="--Comment--" type="text" asp-for="What_mood_the_participant_in_Afternoon" id="name" class="form-control" /></td>
+                                    <td><input data-placeholder="--Comment--" type="text" asp-for="What_mood_the_participant_in_Evining" id="name" class="form-control" /></td>
+                                </tr>
+                                <tr>
+                                    <td>What the participant hat to eat?</td>
+                                    <td><input data-placeholder="--Comment--" type="text" asp-for="What_the_participant_had_to_eat_Morning" id="name" class="form-control" /></td>
+                                    <td><input data-placeholder="--Comment--" type="text" asp-for="What_the_participant_had_to_eat_Afternoon" id="name" class="form-control" /></td>
+                                    <td><input data-placeholder="--Comment--" type="text" asp-for="What_the_participant_had_to_eat_Evening" id="name" class="form-control" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Activities the participant took part in</td>
+                                    <td><input data-placeholder="--Comment--" type="text" asp-for="Activities_the_participant_took_part_in_Morning" id="name" class="form-control" /></td>
+                                    <td><input data-placeholder="--Comment--" type="text" asp-for="Activities_the_participant_took_part_in_AfterNoon" id="name" class="form-control" /></td>
+                                    <td><input data-placeholder="--Comment--" type="text" asp-for="Activities_the_participant_took_part_in_Evening" id="name" class="form-control" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Did he/she enjoy activities?</td>
+                                    <td>
+                                        <label>
+                                            <input asp-for="Did_He_She_Enjoy_activities_Morning" value="Yes" type="radio" class="input-radio" checked />Yes
+                                        </label>
+                                        <br />
+                                        <label>
+                                            <input asp-for="Did_He_She_Enjoy_activities_Morning" value="No" type="radio" class="input-radio" />No
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label>
+                                            <input asp-for="Did_He_She_Enjoy_activities_Afternoon" value="Yes" type="radio" class="input-radio" checked />Yes
+                                        </label>
+                                        <br />
+                                        <label>
+                                            <input asp-for="Did_He_She_Enjoy_activities_Afternoon" value="No" type="radio" class="input-radio" />No
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label>
+                                            <input asp-for="Did_He_She_Enjoy_activities_Evening" value="Yes" type="radio" class="input-radio" checked />Yes
+                                        </label>
+                                        <br />
+                                        <label>
+                                            <input asp-for="Did_He_She_Enjoy_activities_Evening" value="No" type="radio" class="input-radio" />No
+                                        </label>
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>Did he/she bath?</td>
+                                    <td>
+                                        <label>
+                                            <input asp-for="Did_he_she_bath_Morning" value="Yes" type="radio" class="input-radio" checked />Yes
+                                        </label>
+                                        <br />
+                                        <label>
+                                            <input asp-for="Did_he_she_bath_Morning" value="No" type="radio" class="input-radio" />No
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label>
+                                            <input asp-for="Did_he_she_bath_Afternoon" value="Yes" type="radio" class="input-radio" checked />Yes
+                                        </label>
+                                        <br />
+                                        <label>
+                                            <input asp-for="Did_he_she_bath_Afternoon" value="No" type="radio" class="input-radio" />No
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label>
+                                            <input asp-for="Did_he_she_bath_Evening" value="Yes" type="radio" class="input-radio" checked />Yes
+                                        </label>
+                                        <br />
+                                        <label>
+                                            <input asp-for="Did_he_she_bath_Evening" value="No" type="radio" class="input-radio" />No
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Did he/she wash?</td>
+                                    <td>
+                                        <label>
+                                            <input asp-for="Did_he_she_wash_Morning" value="Yes" type="radio" class="input-radio" checked />Yes
+                                        </label>
+                                        <br />
+                                        <label>
+                                            <input asp-for="Did_he_she_wash_Morning" value="No" type="radio" class="input-radio" />No
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label>
+                                            <input asp-for="Did_he_she_wash_Afternoon" value="Yes" type="radio" class="input-radio" checked />Yes
+                                        </label>
+                                        <br />
+                                        <label>
+                                            <input asp-for="Did_he_she_wash_Afternoon" value="No" type="radio" class="input-radio" />No
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label>
+                                            <input asp-for="Did_he_she_wash_Evening" value="Yes" type="radio" class="input-radio" checked />Yes
+                                        </label>
+                                        <br />
+                                        <label>
+                                            <input asp-for="Did_he_she_wash_Evening" value="No" type="radio" class="input-radio" />No
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Did he/she brush teeth?</td>
+                                    <td>
+                                        <label>
+                                            <input asp-for="Did_he_she_brush_teeth_Morning" value="Yes" type="radio" class="input-radio" checked />Yes
+                                        </label>
+                                        <br />
+                                        <label>
+                                            <input asp-for="Did_he_she_brush_teeth_Morning" value="No" type="radio" class="input-radio" />No
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label>
+                                            <input asp-for="Did_he_she_brush_teeth_Afternoon" value="Yes" type="radio" class="input-radio" checked />Yes
+                                        </label>
+                                        <br />
+                                        <label>
+                                            <input asp-for="Did_he_she_brush_teeth_Afternoon" value="No" type="radio" class="input-radio" />No
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label>
+                                            <input asp-for="Did_he_she_brush_Teeth_Evening" value="Yes" type="radio" class="input-radio" checked />Yes
+                                        </label>
+                                        <br />
+                                        <label>
+                                            <input asp-for="Did_he_she_brush_Teeth_Evening" value="No" type="radio" class="input-radio" />No
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Open bowls?</td>
+                                    <td>
+                                        <label>
+                                            <input asp-for="Open_bowls_Morning" value="Yes" type="radio" class="input-radio" checked />Yes
+                                        </label>
+                                        <br />
+                                        <label>
+                                            <input asp-for="Open_bowls_Morning" value="No" type="radio" class="input-radio" />No
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label>
+                                            <input asp-for="Open_bowls_Afternoon" value="Yes" type="radio" class="input-radio" checked />Yes
+                                        </label>
+                                        <br />
+                                        <label>
+                                            <input asp-for="Open_bowls_Afternoon" value="No" type="radio" class="input-radio" />No
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label>
+                                            <input asp-for="Open_bowls_Evening" value="Yes" type="radio" class="input-radio" checked />Yes
+                                        </label>
+                                        <br />
+                                        <label>
+                                            <input asp-for="Open_bowls_Evening" value="No" type="radio" class="input-radio" />No
+                                        </label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <h6>Any Behaviour of concern?</h6>
+                <select data-placement="--Select Your Participant--" id="dropdown" asp-for="Any_behaviour_of_Concern" class="form-control" required>
+                    @*<option disabled selected value>Gendere</option>*@
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <br />
+            </div>
+        </div>
+
+
+        <br />
+
+
+        <div class="text-right">
+            <button style="background-color:limegreen" type="submit" class="submit-button"> Save Prticipate</button>
+
+
+
+        </div>
+
+    </form>
+
+
+
+
+
+</div>

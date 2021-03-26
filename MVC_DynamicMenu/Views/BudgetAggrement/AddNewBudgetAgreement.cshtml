@@ -1,0 +1,783 @@
+﻿@model MainBudgetAgreement
+@{
+    ViewData["Title"] = "Add New BudgetAgreement";
+
+}
+<head>
+    <link href="~/css/Addfile.css" rel="stylesheet" />
+</head>
+<div class="container">
+    <header class="header">
+        <h1 id="title" class="text-center">Add A New Budegt Agreement</h1>
+        <p id="description" class="description text-center">
+
+        </p>
+
+       
+    </header>
+    <form asp-action="AddNewBudgetAgreement" id="survey-form">
+
+        <div class="row">
+            <div class="col-md-6">
+                <label id="name-label" for="name">Select Participant</label>
+                <input type="text"
+                       name="name"
+                       id="myInput"
+                       class="form-control"
+                       placeholder="Enter name"
+                       onkeyup="myFunction()"
+                       required />
+
+            </div>
+
+            <div class="col-md-3">
+
+                <label>Start Date</label>
+                <input type="date" id="dateofbirth">
+
+            </div>
+
+            <div class="col-md-3">
+                <label>End Date</label>
+                <input type="date" id="dateofbirth">
+            </div>
+
+        </div>
+
+        <br />
+        <br />
+        <div class="form-group">
+            <h5>Allocated Support Budgets</h5>
+            <br />
+            @*Allocated Support Budgets*@
+            <div id="supbudget">
+                <div id="Aform-holder0">
+
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <h6>Select Program</h6>
+                            <select id="program0" name="AllocateBudgetAgreement[0].Select_Program" class="form-control" required>
+                                <option value="NDIS">NDIS</option>
+                                <option value="Organaisation">Organaisation</option>
+                                <option value="Singapore">Singapore</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <h6>Support Purpose</h6>
+                            <select id="purpose0" name="AllocateBudgetAgreement[0].Support_purpose" class="form-control" required>
+                                <option value="Capacity_building">Capacity building</option>
+                                <option value="Capatal">Capatal</option>
+                                <option value="Core">Core</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <h6>Support Category</h6>
+                            <select id="cat0" name="AllocateBudgetAgreement[0].Support_category" class="form-control" required>
+                                <option value="Assistance_with_daily_life">Assistance with daily life</option>
+                                <option value="Assistance_with_social_and_community_participation">Assistance with social and community participation</option>
+                                <option value="Improved_living_arrangements">Improved living arrangements</option>
+                                <option value="Increased_social_and_community_participation">Increased social and community participation</option>
+                                <option value="Find_and_keep_a_job">Find and keep a job</option>
+                                <option value="Improved_relationships">Improved relationships</option>
+                                <option value="Improved_health_and_wellbeing">Improved health and wellbeing</option>
+                                <option value="Improved_life_choices">Improved life choices</option>
+                                <option value="Improved_daily_living">Improved daily living</option>
+                                <option value="Consumables">Consumables</option>
+                                <option value="Transport">Transport</option>
+                                <option value="Assistive_technology">Assistive technology</option>
+                                <option value="Home_modifications">Home modifications</option>
+                                <option value="Coordination_of_supports">Coordination of supports</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <h6>Biller Type</h6>
+                            <select id="biller0" name="AllocateBudgetAgreement[0].Biler_type" class="form-control" required>
+                                <option value="NDIS">NDIS</option>
+                                <option value="Client_Funded">Client_Funded</option>
+                                <option value="Nominee">Nominee</option>
+                                <option value="Organisation_funded">Organisation_funded</option>
+                                <option value="Plan_managed">Plan_managed</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+
+                            <label id="name-label">Budget</label>
+                            <input type="text"
+                                   id="budget0"
+                                   name="AllocateBudgetAgreement[0].Budget"
+                                   class="form-control"
+                                   placeholder="$"
+                                   required />
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <label id="name-label">Remaining Budget</label>
+                            <input type="text"
+                                   id="rembudget0"
+                                   name="AllocateBudgetAgreement[0].Remaining_budget"
+                                   class="form-control"
+                                   placeholder="$"
+                                   required />
+                        </div>
+
+
+
+                    </div>
+                    <br />
+
+
+                    <input id="supbAdd0" type="button" value="Add" />
+
+
+                </div>
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            @* end supbudet *@
+            <h5>My Support</h5>
+            <br />
+            <div id="MySupbudget">
+                <div id="myform-holder0">
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6>Select Program</h6>
+                            <select id="program0" name="AllocateBudgetAgreement[0].Select_Program" class="form-control" required>
+                                <option value="NDIS">NDIS</option>
+                                <option value="Organaisation">Organaisation</option>
+                                <option value="Singapore">Singapore</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <h6>Support Purpose</h6>
+                            <select id="purpose0" name="AllocateBudgetAgreement[0].Support_purpose" class="form-control" required>
+                                <option value="Capacity_building">Capacity building</option>
+                                <option value="Capatal">Capatal</option>
+                                <option value="Core">Core</option>
+                            </select>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <h6>Support Category</h6>
+                            <select id="cat0" name="AllocateBudgetAgreement[0].Support_category" class="form-control" required>
+                                <option value="Assistance_with_daily_life">Assistance with daily life</option>
+                                <option value="Assistance_with_social_and_community_participation">Assistance with social and community participation</option>
+                                <option value="Improved_living_arrangements">Improved living arrangements</option>
+                                <option value="Increased_social_and_community_participation">Increased social and community participation</option>
+                                <option value="Find_and_keep_a_job">Find and keep a job</option>
+                                <option value="Improved_relationships">Improved relationships</option>
+                                <option value="Improved_health_and_wellbeing">Improved health and wellbeing</option>
+                                <option value="Improved_life_choices">Improved life choices</option>
+                                <option value="Improved_daily_living">Improved daily living</option>
+                                <option value="Consumables">Consumables</option>
+                                <option value="Transport">Transport</option>
+                                <option value="Assistive_technology">Assistive technology</option>
+                                <option value="Home_modifications">Home modifications</option>
+                                <option value="Coordination_of_supports">Coordination of supports</option>
+                            </select>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <h6>Support Item</h6>
+                            <select id="supportItem0" name="MySupport[0].Support_Item" class="form-control" required>
+                                <option value="Other_Therapy">Assessment Remommadation Therapy and Or Traning(Incl AT) Other Therapy-Other Therapy</option>
+                                <option value="Physiotherapy">Assessment Remommadation Therapy and Or Traning(Incl AT) Other Therapy-Physiotherapy</option>
+                                <option value="Psychology">Assessment Remommadation Therapy and Or Traning(Incl AT) Other Therapy-Psychology</option>
+                                <option value="Assistance_with_Decision_Making_dally_Planning_and_budgeting">Assistance with Decision Making dally Planning and budgeting</option>
+                                <option value="Capacity_Buiding_supported_for_Early_childhood">Capacity Buiding supported for Early childhood</option>
+                                <option value="Capacity_Buiding_supported_for_Early_childhood_group_up_to_4_other_therapy">Capacity Buiding supported for Early childhoodgroup up to 4 other therapy</option>
+                                <option value="Capacity_Buiding_supported_for_Early_childhood_group_up_to_4_Physiotherapy">Capacity Buiding supported for Early child hoodgroup up to 4 Physiotherapy</option>
+                                <option value="Capacity_Buiding_supported_for_Early_childhood_group_up_to_4_Psychology">Capacity Buiding supported for Early childhood group up to 4 Psychology</option>
+                                <option value="Delivary_of_helth_supports_by_a_clinical_Nurse_sunday">Delivary of helth supports by a clinical Nurse sunday</option>
+                                <option value="Delivary_of_helth_supports_by_a_clinical_Nurse_Weekday_Afternoon">Delivary of helth supports by a clinical Nurse Consiltant Weekday_Afternoon</option>
+                                <option value="Delivary_of_helth_supports_by_a_clinical_Nurse_Weekday_daytime">Delivary of helth supports by a clinical Nurse Consiltant Weekday_daytime</option>
+                                <option value="Delivary_of_helth_supports_by_a_clinical_Nurse_Activity_overnight">Delivary of helth supports by a clinical Nurse Consiltant Activity overnight</option>
+                                <option value="Delivary_of_helth_supports_by_a_clinical_Nurse_Public_Holiday">Delivary of helth supports by a clinical Nurse Consiltant Public Holiday</option>
+                                <option value="Delivary_of_helth_supports_by_a_clinical_Nurse_Saturday">Delivary of helth supports by a clinical Nurse Consiltant Saturday</option>
+                                <option value="Delivary_of_helth_supports_by_a_clinical_Nurse_Sunday">Delivary of helth supports by a clinical Nurse Consiltant-sunday</option>
+
+                            </select>
+                        </div>
+
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6>Biller Type</h6>
+                            <select id="biller0" name="AllocateBudgetAgreement[0].Biler_type" class="form-control" required>
+                                <option value="NDIS">NDIS</option>
+                                <option value="Client_Funded">Client_Funded</option>
+                                <option value="Nominee">Nominee</option>
+                                <option value="Organisation_funded">Organisation_funded</option>
+                                <option value="Plan_managed">Plan_managed</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <h6>Service Providers</h6>
+                            <select id="sProvider0" name="MySupport[0].Service_Provider" class="form-control" required>
+                                @*<option disabled selected value>Select current role</option>*@
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+
+
+                    <br />
+                    <br />
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label id="name-label">Ratio</label>
+                            <input type="text"
+                                   id="ratio0"
+                                   name="MySupport[0].Ratio"
+                                   class="form-control"
+                                   placeholder="$"
+                                   required />
+                        </div>
+
+
+
+                        <div class="col-md-2">
+                            <label id="name-label">SVC Booking</label>
+                            <input type="text"
+                                   id="svc0"
+                                   name="MySupport[0].SVC_Booking"
+                                   class="form-control"
+                                   required />
+                        </div>
+
+
+
+                        <div class="col-md-2">
+                            <label id="name-label">Qty Week</label>
+                            <input type="text"
+                                   id="qtyWeek0"
+                                   name="MySupport[0].Qty_week"
+                                   class="form-control"
+                                   required />
+                        </div>
+
+
+                        <div class="col-md-2">
+                            <label id="name-label">Week</label>
+                            <input type="text"
+                                   id="Week0"
+                                   name="MySupport[0].Week"
+                                   class="form-control"
+                                   placeholder="$"
+                                   required />
+                        </div>
+
+
+                        <div class="col-md-2">
+                            <label id="name-label">Total Units</label>
+                            <input type="text"
+                                   id="tUnits0"
+                                   name="MySupport[0].Total_units"
+                                   class="form-control"
+                                   placeholder="$"
+                                   required />
+                        </div>
+                    </div>
+
+
+                    <br />
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label id="name-label">Unit Of Measure</label>
+                            <input type="text"
+                                   id="uMeasure0"
+                                   name="MySupport[0].UnitOfMeasure"
+                                   class="form-control"
+                                   placeholder="$"
+                                   required />
+                        </div>
+                        <div class="col-md-3">
+                            <label id="name-label">Unit Price</label>
+                            <input type="text"
+                                   id="uPrice0"
+                                   name="MySupport[0].Unit_Price"
+                                   class="form-control"
+                                   placeholder="Week"
+                                   required />
+                        </div>
+
+                        <div class="col-md-3">
+                            <label id="name-label">Total Pricec</label>
+                            <input type="text"
+                                   id="tPrice0"
+                                   name="MySupport[0].Total_units"
+                                   class="form-control"
+                                   required />
+                        </div>
+
+
+
+                    </div>
+                    <br />
+                    <br />
+                    <input id="MySupAdd0" type="button" value="Add" />
+                </div>@*End My support*@
+            </div>
+            <br />
+            <br />
+            <br />
+
+            @*Additional Activity Log*@
+            <h5>Additional Activity Log</h5>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <textarea name="AdditionalActivityClass[0].Description_of_costs" placeholder="--Add Description--" id="comments"
+                              class="input-textarea">
+
+                        </textarea>
+                </div>
+
+                <div class="col-md-3">
+                    <h6>Biller</h6>
+                    <select id="biller0" name="AllocateBudgetAgreement[0].Biler_type" class="form-control" required>
+                        <option value="NDIS">NDIS</option>
+                        <option value="Client_Funded">Client_Funded</option>
+                        <option value="Nominee">Nominee</option>
+                        <option value="Organisation_funded">Organisation_funded</option>
+                        <option value="Plan_managed">Plan_managed</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <h6>Total Price</h6>
+                    <input type="text"
+                           id="TPrice0"
+                           name="MySupport[0].Total_units"
+                           class="form-control"
+                           required />
+                </div>
+
+
+            </div>
+            <br />
+            <br />
+
+            <h6>Notes</h6>
+            <textarea name="AdditionalActivityClass[0].Notes" id="comments"
+                      class="input-textarea">
+
+                    </textarea>
+            <br />
+            <br />
+
+
+
+
+
+            <script type="text/javascript">
+                const projectName = 'survey-form';
+
+            </script>
+
+            <script>
+                var itemCount = 0;
+                $('#supbAdd0').click(function () { addNewItem(); });
+
+                function addNewItem() {
+                    var thisItem = itemCount;
+                    // Make last text box readonly
+                    $('#program0' + itemCount).attr('readonly', 'readonly');
+                    // Change button to Remove button
+                    $('#supbAdd' + itemCount).attr('value', 'Remove');
+                    $('#supbAdd' + itemCount).unbind();
+                    $('#supbAdd' + itemCount).click(function () { removeItem(thisItem); });
+
+                    // Add new line with text field and button
+                    itemCount++;
+                    var newItem = `
+                             <div id="Aform-holder`+ itemCount +`">
+
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <h6>Select Program</h6>
+                            <select id="program`+ itemCount + `" name="AllocateBudgetAgreement[` + itemCount +`].Select_Program" class="form-control" required>
+                                <option value="NDIS">NDIS</option>
+                                <option value="Organaisation">Organaisation</option>
+                                <option value="Singapore">Singapore</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <h6>Support Purpose</h6>
+                            <select id="purpose`+ itemCount + `" name="AllocateBudgetAgreement[` + itemCount +`].Support_purpose" class="form-control" required>
+                                <option value="Capacity_building">Capacity building</option>
+                                <option value="Capatal">Capatal</option>
+                                <option value="Core">Core</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <h6>Support Category</h6>
+                            <select id="cat`+ itemCount + `" name="AllocateBudgetAgreement[` + itemCount +`].Support_category" class="form-control" required>
+                                <option value="Assistance_with_daily_life">Assistance with daily life</option>
+                                <option value="Assistance_with_social_and_community_participation">Assistance with social and community participation</option>
+                                <option value="Improved_living_arrangements">Improved living arrangements</option>
+                                <option value="Increased_social_and_community_participation">Increased social and community participation</option>
+                                <option value="Find_and_keep_a_job">Find and keep a job</option>
+                                <option value="Improved_relationships">Improved relationships</option>
+                                <option value="Improved_health_and_wellbeing">Improved health and wellbeing</option>
+                                <option value="Improved_life_choices">Improved life choices</option>
+                                <option value="Improved_daily_living">Improved daily living</option>
+                                <option value="Consumables">Consumables</option>
+                                <option value="Transport">Transport</option>
+                                <option value="Assistive_technology">Assistive technology</option>
+                                <option value="Home_modifications">Home modifications</option>
+                                <option value="Coordination_of_supports">Coordination of supports</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <h6>Biller Type</h6>
+                            <select id="biller`+ itemCount +`" name="AllocateBudgetAgreement[`+ itemCount +`].Biler_type" class="form-control" required>
+                                <option value="NDIS">NDIS</option>
+                                <option value="Client_Funded">Client_Funded</option>
+                                <option value="Nominee">Nominee</option>
+                                <option value="Organisation_funded">Organisation_funded</option>
+                                <option value="Plan_managed">Plan_managed</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+
+                            <label id="name-label">Budget</label>
+                            <input type="text"
+                                   id="budget`+ itemCount +`"
+                                   name="AllocateBudgetAgreement[`+ itemCount +`].Budget"
+                                   class="form-control"
+                                   placeholder="$"
+                                   required />
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <label id="name-label">Remaining Budget</label>
+                            <input type="text"
+                                   id="rembudget`+ itemCount +`"
+                                   name="AllocateBudgetAgreement[`+ itemCount +`].Remaining_budget"
+                                   class="form-control"
+                                   placeholder="$"
+                                   required />
+                        </div>
+
+
+
+                    </div>
+                    <br />
+
+
+                    <input id="supbAdd`+ itemCount +`" type="button" value="Add" />
+
+
+                </div>
+
+                        `
+
+                    $('#supbudget').append(newItem);
+                    $('#supbAdd' + itemCount).click(function () { addNewItem(); });
+                }
+
+                function removeItem(i) {
+                    $('#Aform-holder' + i).remove();
+                }
+            </script>
+
+
+
+
+
+            <script>
+                var itemMyCount = 0;
+            $('#MySupAdd0').click(function () { addmyNewItem(); });
+
+                function addmyNewItem() {
+                    var thisItem = itemMyCount;
+                    // Make last text box readonly
+                    //$('#program0' + itemCount).attr('readonly', 'readonly');
+                    // Change button to Remove button
+                    $('#MySupAdd' + itemMyCount).attr('value', 'Remove');
+                    $('#MySupAdd' + itemMyCount).unbind();
+                    $('#MySupAdd' + itemMyCount).click(function () { removemyItem(thisItem); });
+
+                    // Add new line with text field and button
+                    itemMyCount++;
+                    var newItem = `<div id="myform-holder` + itemMyCount +`">
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6>Select Program</h6>
+                            <select id="sProgram`+ itemMyCount + `" name="MySupport[` + itemMyCount +`].SelectProgaramm" class="form-control" required>
+                               <option value="NDIS">NDIS</option>
+                                <option value="Organaisation">Organaisation</option>
+                                <option value="Singapore">Singapore</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <h6>Support Purpose</h6>
+                            <sel<option value="Capacity_building">Capacity building</option>
+                                <option value="Capatal">Capatal</option>
+                                <option value="Core">Core</option>
+                            </select>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <h6>Support Category</h6>
+                            <select id="sCategory`+ itemMyCount + `" name="MySupport[` + itemMyCount +`].SupportCategory" class="form-control" required>
+                                 <option value="Assistance_with_daily_life">Assistance with daily life</option>
+                                <option value="Assistance_with_social_and_community_participation">Assistance with social and community participation</option>
+                                <option value="Improved_living_arrangements">Improved living arrangements</option>
+                                <option value="Increased_social_and_community_participation">Increased social and community participation</option>
+                                <option value="Find_and_keep_a_job">Find and keep a job</option>
+                                <option value="Improved_relationships">Improved relationships</option>
+                                <option value="Improved_health_and_wellbeing">Improved health and wellbeing</option>
+                                <option value="Improved_life_choices">Improved life choices</option>
+                                <option value="Improved_daily_living">Improved daily living</option>
+                                <option value="Consumables">Consumables</option>
+                                <option value="Transport">Transport</option>
+                                <option value="Assistive_technology">Assistive technology</option>
+                                <option value="Home_modifications">Home modifications</option>
+                                <option value="Coordination_of_supports">Coordination of supports</option>
+                            </select>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <h6>Support Item</h6>
+                            <select id="supportItem`+ itemMyCount + `" name="MySupport[` + itemMyCount +`].Support_Item" class="form-control" required>
+                               <option value="Other_Therapy">Assessment Remommadation Therapy and Or Traning(Incl AT) Other Therapy-Other Therapy</option>
+                                <option value="Physiotherapy">Assessment Remommadation Therapy and Or Traning(Incl AT) Other Therapy-Physiotherapy</option>
+                                <option value="Psychology">Assessment Remommadation Therapy and Or Traning(Incl AT) Other Therapy-Psychology</option>
+                                <option value="Assistance_with_Decision_Making_dally_Planning_and_budgeting">Assistance with Decision Making dally Planning and budgeting</option>
+                                <option value="Capacity_Buiding_supported_for_Early_childhood">Capacity Buiding supported for Early childhood</option>
+                                <option value="Capacity_Buiding_supported_for_Early_childhood_group_up_to_4_other_therapy">Capacity Buiding supported for Early childhoodgroup up to 4 other therapy</option>
+                                <option value="Capacity_Buiding_supported_for_Early_childhood_group_up_to_4_Physiotherapy">Capacity Buiding supported for Early child hoodgroup up to 4 Physiotherapy</option>
+                                <option value="Capacity_Buiding_supported_for_Early_childhood_group_up_to_4_Psychology">Capacity Buiding supported for Early childhood group up to 4 Psychology</option>
+                                <option value="Delivary_of_helth_supports_by_a_clinical_Nurse_sunday">Delivary of helth supports by a clinical Nurse sunday</option>
+                                <option value="Delivary_of_helth_supports_by_a_clinical_Nurse_Weekday_Afternoon">Delivary of helth supports by a clinical Nurse Consiltant Weekday_Afternoon</option>
+                                <option value="Delivary_of_helth_supports_by_a_clinical_Nurse_Weekday_daytime">Delivary of helth supports by a clinical Nurse Consiltant Weekday_daytime</option>
+                                <option value="Delivary_of_helth_supports_by_a_clinical_Nurse_Activity_overnight">Delivary of helth supports by a clinical Nurse Consiltant Activity overnight</option>
+                                <option value="Delivary_of_helth_supports_by_a_clinical_Nurse_Public_Holiday">Delivary of helth supports by a clinical Nurse Consiltant Public Holiday</option>
+                                <option value="Delivary_of_helth_supports_by_a_clinical_Nurse_Saturday">Delivary of helth supports by a clinical Nurse Consiltant Saturday</option>
+                                <option value="Delivary_of_helth_supports_by_a_clinical_Nurse_Sunday">Delivary of helth supports by a clinical Nurse Consiltant-sunday</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6>Biller Type</h6>
+                            <select id="billerType`+ itemMyCount + `" name="MySupport[` + itemMyCount +`].Biller_type" class="form-control" required>
+                                <option value="NDIS">NDIS</option>
+                                <option value="Client_Funded">Client_Funded</option>
+                                <option value="Nominee">Nominee</option>
+                                <option value="Organisation_funded">Organisation_funded</option>
+                                <option value="Plan_managed">Plan_managed</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <h6>Service Providers</h6>
+                            <select id="sProvider`+ itemMyCount + `" name="MySupport[` + itemMyCount +`].Service_Provider" class="form-control" required>
+                                @*<option disabled selected value>Select current role</option>*@
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+
+
+                    <br />
+                    <br />
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label id="name-label">Ratio</label>
+                            <input type="text"
+                                   id="ratio`+ itemMyCount +`"
+                                   name="MySupport[`+ itemMyCount +`].Ratio"
+                                   class="form-control"
+                                   placeholder="$"
+                                   required />
+                        </div>
+
+
+
+                        <div class="col-md-2">
+                            <label id="name-label">SVC Booking</label>
+                            <input type="text"
+                                   id="svc`+ itemMyCount +`"
+                                   name="MySupport[`+ itemMyCount +`].SVC_Booking"
+                                   class="form-control"
+                                   required />
+                        </div>
+
+
+
+                        <div class="col-md-2">
+                            <label id="name-label">Qty Week</label>
+                            <input type="text"
+                                   id="`+ itemMyCount +`"
+                                   name="MySupport[`+ itemMyCount +`].Qty_week"
+                                   class="form-control"
+                                   required />
+                        </div>
+
+
+                        <div class="col-md-2">
+                            <label id="name-label">Week</label>
+                            <input type="text"
+                                   id="Week`+ itemMyCount +`"
+                                   name="MySupport[`+ itemMyCount +`].Week"
+                                   class="form-control"
+                                   placeholder="$"
+                                   required />
+                        </div>
+
+
+                        <div class="col-md-2">
+                            <label id="name-label">Total Units</label>
+                            <input type="text"
+                                   id="tUnits`+ itemMyCount +`"
+                                   name="MySupport[`+ itemMyCount +`].Total_units"
+                                   class="form-control"
+                                   placeholder="$"
+                                   required />
+                        </div>
+                    </div>
+
+
+                    <br />
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label id="name-label">Unit Of Measure</label>
+                            <input type="text"
+                                   id="`+ itemMyCount +`"
+                                   name="MySupport[`+ itemMyCount +`].UnitOfMeasure"
+                                   class="form-control"
+                                   placeholder="$"
+                                   required />
+                        </div>
+                        <div class="col-md-3">
+                            <label id="name-label">Unit Price</label>
+                            <input type="text"
+                                   id="uPrice`+ itemMyCount +`"
+                                   name="MySupport[`+ itemMyCount +`].Unit_Price"
+                                   class="form-control"
+                                   placeholder="Week"
+                                   required />
+                        </div>
+
+                        <div class="col-md-3">
+                            <label id="name-label">Total Pricec</label>
+                            <input type="text"
+                                   id="tPrice`+ itemMyCount +`"
+                                   name="MySupport[`+ itemMyCount +`].Total_units"
+                                   class="form-control"
+                                   required />
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+
+                    <input id="MySupAdd`+ itemMyCount +`" type="button" value="Add" />
+                </div> `
+
+                    $('#MySupbudget').append(newItem);
+                    $('#MySupAdd' + itemMyCount).click(function () { addmyNewItem(); });
+                }
+
+                function removemyItem(i) {
+                    $('#myform-holder' + i).remove();
+                }
+            </script>
+
+
+            @*Buttons*@
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <button type="submit" id="submit" class="submit-button">
+                            Save as Draft
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <button type="submit" id="submit" class="submit-button">
+                            Save & Publish
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <button type="submit" id="submit" class="submit-button">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        @section Scripts{
+            <script>
+                function myFunction() {
+                    var input, filter, table, tr, td, i, txtValue;
+                    input = document.getElementById("myInput");
+                    filter = input.value.toUpperCase();
+                    table = document.getElementById("myTable");
+                    tr = table.getElementsByTagName("tr");
+                    for (i = 0; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[1];
+                        if (td) {
+                            txtValue = td.textContent || td.innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                            } else {
+                                tr[i].style.display = "none";
+                            }
+                        }
+                    }
+                }
+            </script>
+        }
+    </form>
+</div>
+
+
+
+
+

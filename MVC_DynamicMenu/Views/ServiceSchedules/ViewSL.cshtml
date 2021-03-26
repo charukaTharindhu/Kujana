@@ -1,0 +1,173 @@
+﻿
+@model MVC_DynamicMenu.Models.LogSchedule
+@using Newtonsoft.Json;
+@using Microsoft.AspNetCore.Http;
+@{
+    ViewData["Title"] = "Home page";
+    string loggeduser = Context.Session.GetString("loggedname");
+}
+<head>
+    <link href="~/css/Addfile.css" rel="stylesheet" />
+</head>
+<div class="container">
+    <header class="header">
+        <h1 id="title" class="text-center">Schedule Log</h1>
+        <p id="description" class="description text-center">
+
+        </p>
+    </header>
+    <form asp-action="" id="survey-form">
+        <div class="form-group">
+
+            <p>Participent(s)</p>
+            <br />
+            <input type="hidden" asp-for="ReferenceID" value="@ViewBag.Id" />
+            <br />
+            <br />
+            <br />
+
+            <label>Scheduled Start Date</label>
+            <br />
+            <input type="date" asp-for="Scheduled_start_date" id="dateofbirth" />
+            <br />
+            <h6>Shedule Start Time</h6>
+            <br />
+            <input type="time" asp-for="Scheduled_start_time" id="dateofbirth">
+            <br />
+            <br />
+            <br />
+
+
+            <label>Scheduled Finish Date</label>
+            <br />
+            <input type="date" asp-for="Scheduled_finish_date" id="dateofbirth">
+            <br />
+            <h6>Shedule Finish Time</h6>
+            <br />
+            <input type="time" asp-for="Scheduled_finish_time" id="dateofbirth">
+            <br />
+            <label>Actual Start Date</label>
+            <br />
+            <br />
+            <br />
+            <input type="date" asp-for="Actual_start_date" id="dateofbirth">
+            <br />
+            <h6>Actual Start Time</h6>
+            <br />
+            <input type="time" asp-for="Actual_start_time" id="dateofbirth">
+            <br />
+            <label>Actual Finish Date</label>
+            <br />
+            <input type="date" asp-for="Actual_finish_date" id="dateofbirth">
+            <br />
+            <h6>Actual Finish Time</h6>
+            <input type="time" asp-for="Actual_finish_time" id="dateofbirth">
+            <br />
+            <h6>Activity Category</h6>
+            <select id="dropdown" asp-for="Activity_category" class="form-control" required>
+                @*<option disabled selected value>Select current role</option>*@
+                <option value="Center_based_Program">Center based Program</option>
+                <option value="Community_participation">Community participation</option>
+                <option value="Culture_engagement">Culture engagement</option>
+                <option value="Daily_Planing_meeting">Daily Planing meeting</option>
+                <option value="Education">Education</option>
+                <option value="Employeement">Employeement</option>
+            </select>
+
+            <br />
+            <br />
+            <br />
+
+            <h6>Activity</h6>
+            <select id="dropdown" asp-for="Activity" class="form-control" required>
+                @*<option disabled selected value>Select current role</option>*@
+                <option value="Art">Art</option>
+                <option value="bbq">bbq</option>
+                <option value="cooking">cooking</option>
+                <option value="outing">outing</option>
+                <option value="shopping">shopping</option>
+                <option value="sport_participation">sport participation</option>
+            </select>
+            <br />
+            <br />
+            <br />
+
+            <label id="name-label" asp-for="Persons_attending">Persons Attending</label>
+            <input type="text"
+                   asp-for="Persons_attending"
+                   id="name"
+                   class="form-control"
+                   required />
+        </div>
+
+
+        <br />
+        <br />
+        <br />
+
+        <div class="form-group">
+
+            <p>Outcomes</p>
+            <h6>Specify Activity Purpose</h6>
+            <textarea id="comments"
+                      class="input-textarea"
+                      asp-for="Specific_activity_purpose"
+                      placeholder="Goals..."></textarea>
+        </div>
+
+        <br />
+        <br />
+        <div class="form-group">
+
+            <h6>Describe Outcomes </h6>
+            <textarea id="comments"
+                      class="input-textarea"
+                      asp-for="Describe_outcome"
+                      placeholder="What Happened..."></textarea>
+        </div>
+        <br />
+        <br />
+        <div class="form-group">
+
+
+            <h6>Issues & Followup Required</h6>
+            <textarea id="comments"
+                      class="input-textarea"
+                      asp-for="Issues_and_followup_requried"
+                      placeholder="Issues..."></textarea>
+        </div>
+
+        <br />
+        <br />
+
+        <div class="form-group">
+
+
+            <h6>Service & Billing Notes</h6>
+            <textarea id="comments"
+                      class="input-textarea"
+                      asp-for="Service_and_billing_note"></textarea>
+        </div>
+
+        <h6>Staff</h6>
+        <input type="text" asp-for="Staff" id="dateofbirth"
+               value="@loggeduser"
+               readonly>
+
+
+        <h6>Finish Time</h6>
+        <input type="time" asp-for="Finish_time" id="dateofbirth">
+
+      
+
+        <script type="text/javascript">
+            const projectName = 'survey-form';
+
+        </script>
+    </form>
+</div>
+
+
+
+
+

@@ -1,0 +1,146 @@
+﻿@model MyProfile
+@{
+    ViewData["Title"] = "Home page";
+}
+<head>
+    <link href="~/css/Addfile.css" rel="stylesheet" />
+</head>
+<div class="container">
+    <header class="header">
+        <h1 id="title" class="text-center">My Profile</h1>
+        <p id="description" class="description text-center">
+
+        </p>
+    </header>
+
+    
+    <form method="post" asp-action="UpdateProfileInfo">
+        <div class="form-group">
+            <div class="container">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h6>First Name</h6>
+                            <br />
+                            <br />
+                            <h6>Last Name</h6>
+                            <br />
+                            <br />
+                            <h6>Date Of Birth</h6>
+                            <br />
+
+                            <h6>Gender</h6>
+                            <br />
+
+                            <h6>Mobile Number</h6>
+                            <br />
+                            <br />
+                            <h6>NOK</h6>
+                            <br />
+                            <br />
+                            <h6>Address</h6>
+                            <br />
+                            <br />
+                            <br />
+                            <h6>Driver License</h6>
+                            <br />
+
+                            <h6>Probation</h6>
+                            <br />
+                            <br />
+                            <h6>Rest Authenticator</h6>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" asp-for="First_name"
+                                 
+                                   
+                                   class="form-control"
+                                   required />
+                            <br />
+                            <input type="text" asp-for="Last_name"
+                                   
+                                  
+                                   class="form-control"
+                                   required />
+                            <br />
+                            <input type="date" asp-for="DOB"
+                                  
+                                   
+                                   class="form-control"
+                                   required />
+
+                            <select id="dropdown" asp-for="Gender"  class="form-control" >
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Fax</option>
+                            </select>
+                            <br />
+                            <input type="number" asp-for="Mobile_number"
+                                   
+                                   class="form-control"
+                                   required />
+                            <br />
+                            <input type="hidden" asp-for="ProfileID" />
+                            <input type="hidden" asp-for="UserID" />
+                            <input type="text" asp-for="NOK"
+                               
+                                   class="form-control"
+                                   required />
+                            <br />
+                            <textarea type="text" asp-for="Address"
+                                    
+                                      class="form-control"
+                                      required></textarea>
+                            <br />
+                            <input type="text" asp-for="Driver_License"
+                                   
+                                   class="form-control"
+                                   required />
+                            <br />
+                            <input type="text" asp-for="Probation"
+                                   
+                                   class="form-control"
+                                   required />
+                            <br />
+
+                            <select id="dropdown" asp-for="Rest_Authentication" class="form-control" >
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                                <option value="Other">Fax</option>
+                            </select>
+
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <button type="submit" name="submit" class="submit-button">
+                    Submit
+                </button>
+            </div>
+
+
+            <script type="text/javascript">
+                const projectName = 'survey-form';
+
+            </script>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+

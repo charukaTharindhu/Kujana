@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/kujana-database-db-server/databases/KujanaDatabase",
+      "type": "mssql.azure",
+      "connectionId": "Kujana-db-connectionString",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}

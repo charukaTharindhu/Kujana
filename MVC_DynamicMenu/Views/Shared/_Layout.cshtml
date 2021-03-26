@@ -1,0 +1,279 @@
+﻿@using Newtonsoft.Json;
+@using Microsoft.AspNetCore.Http;
+@using System.Collections.Generic;
+@{ List<OnlyMenu> men = new List<OnlyMenu>();
+    string id;
+    try
+    {
+         id = Context.Session.GetString("userid");
+
+        if (Context.Session.GetString("menus") != null)
+        {
+            var str = Context.Session.GetString("menus");
+            men = JsonConvert.DeserializeObject<List<OnlyMenu>>(str);
+
+        }
+    }
+    catch (Exception)
+    {
+
+        throw;
+    } }
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - VSS__Global_</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
+    <title>Sidebar template</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link href="~/css/Bar.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+
+</head>
+
+<body>
+    <header>
+    </header>
+    <div class="page-wrapper chiller-theme toggled">
+        <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+            <i class="fas fa-bars"></i>
+        </a>
+        <nav id="sidebar" class="sidebar-wrapper">
+            <div class="sidebar-content">
+                <div class="sidebar-brand">
+                    <a href="/Home/Index"><img src="~/img/image.png" class="sidebar-content" style="padding:0; margin:0; width:200px; " alt="Alternate Text" /></a>
+                    <div id="close-sidebar">
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+                <div class="sidebar-header">
+                    <div class="user-pic">
+                        <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+                             alt="User picture">
+                    </div>
+                    <div class="user-info">
+                        <span class="user-name">
+                            <strong>@Context.Session.GetString("username")</strong>
+                        </span>
+                        <span class="user-role">@Context.Session.GetString("userRole")</span>
+                        <span>
+                            <a asp-controller="Document_Skill" asp-action="UpdateProfileInfo" asp-route-id="@id">My Profile</a>
+                        </span>
+                        <span class="user-status">
+                            <i class="fa fa-circle"></i>
+                            <span>Online</span>
+                            <span>
+                                <a asp-controller="Home" asp-action="Logmeout">LOGOUT</a>
+                            </span>
+
+                        </span>
+
+                    </div>
+                </div>
+
+                <!-- sidebar-header  -->
+                <div class="sidebar-search">
+                    <div>
+                        <div class="input-group">
+                            <input type="text" class="form-control search-menu" placeholder="Search...">
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- sidebar-search  -->
+                <div class="sidebar-menu">
+
+                    <ul>
+
+                        <li class="header-menu">
+                            <span>General</span>
+                        </li>
+                        @if (Context.Session.GetString("menus") != null)
+                        {
+
+                            @for (int i = 0; i < men.Count; i++)
+
+                            {
+                                @if (men[i].Url.Trim().Equals("#"))
+                                {
+
+                                    <li class="sidebar-dropdown">
+                                        <a class="sub-btn" href="#">
+                                            <i class="fa fa-tachometer-alt"></i>
+
+                                            <span>@men[i].Menu</span>
+
+                                        </a>
+
+
+                                        <div class="sidebar-submenu">
+                                            <ul>
+                                                @for (int j = i + 1; j < men.Count; j++)
+                                                {
+                                                    @if (men[j].Url != "#")
+                                                    {
+                                                        <li>
+                                                            <a href="@men[j].Url">@men[j].Menu</a>
+                                                        </li>
+                                                    }
+                                                    else
+                                                    {
+                                                        break;
+                                                    }}
+                                            </ul>
+                                        </div>
+
+                                    </li>
+                                }}}
+
+                    </ul>
+                </div>
+
+                
+                 
+                   @*
+                        <ul>
+                        <li>
+                            <a class="active" href="#">HOME</a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="$('ul#contentUsers').toggle();">Manage Users</a>
+                            <ul id="contentUsers" style="display: none;">
+                                <li><a href="#">Link 1</a></li>
+                                <li><a href="#">Link 2</a></li>
+                                <li><a href="#">Link 3</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" onclick="$('ul#contentEmployees').toggle();">Manage Employees</a>
+                            <ul id="contentEmployees" style="display: none;">
+                                <li><a href="#">Link 1</a></li>
+                                <li><a href="#">Link 2</a></li>
+                                <li><a href="#">Link 3</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Search</a>
+                        </li>
+                        <li>
+                            <a href="#">Log-Out</a>
+                        </li>
+                    </ul>
+                   *@
+
+            </div>
+                
+        </nav>
+        <!-- sidebar-wrapper  -->
+        <main class="page-content">
+            <div class="container-fluid">
+                @RenderBody()
+
+
+                <footer class="text-center">
+                    <div class="mb-2">
+                        <small>
+                            © 2021 made by - <a target="_blank" rel="noopener noreferrer" href="https://VSSGLOBAL.com">
+                                VSS Global
+                            </a>
+                        </small>
+                    </div>
+                    <div>
+                        @*<a href="https://github.com/azouaoui-med" target="_blank">
+                                <img alt="GitHub followers" src="https://img.shields.io/github/followers/azouaoui-med?label=github&style=social" />
+                            </a>
+                            <a href="https://twitter.com/azouaoui_med" target="_blank">
+                                <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/azouaoui_med?label=twitter&style=social" />
+                            </a>*@
+                    </div>
+                </footer>
+            </div>
+        </main>
+        <!-- page-content" -->
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        $(".sidebar-dropdown > a").click(function () {
+            $(".sidebar-submenu").slideUp(200);
+            if (
+                $(this)
+                    .parent()
+                    .hasClass("active")
+            ) {
+                $(".sidebar-dropdown").removeClass("active");
+                $(this)
+                    .parent()
+                    .removeClass("active");
+            } else {
+                $(".sidebar-dropdown").removeClass("active");
+                $(this)
+                    .next(".sidebar-submenu")
+                    .slideDown(200);
+                $(this)
+                    .parent()
+                    .addClass("active");
+            }
+        });
+
+        $("#close-sidebar").click(function () {
+            $(".page-wrapper").removeClass("toggled");
+        });
+        $("#show-sidebar").click(function () {
+            $(".page-wrapper").addClass("toggled");
+        });
+    </script>
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                this.classList.toggle("activea");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
+    @RenderSection("Scripts", required: false)
+
+
+    @* <script>
+            $('nav ul li').click(function () {
+                $(this).addClass("active").siblings().removeClass("active");
+            });
+        </script>*@
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //jquery for toggle sub menus
+            $('.sub-btn').click(function () {
+                $(this).next('.sidebar-submenu').slideToggle();
+            });
+    </script>
+
+</body >
+</html >

@@ -1,0 +1,190 @@
+﻿@model AddDocument_Skill
+@using Newtonsoft.Json;
+@using Microsoft.AspNetCore.Http;
+@{
+    ViewData["Title"] = "AddNewClient";
+
+}
+<head>
+    <link href="~/css/Addfile.css" rel="stylesheet" />
+</head>
+<div class="container">
+    <header class="header">
+        <h1 id="title" class="text-center">Add Document/Skill</h1>
+        <p id="description" class="description text-center">
+
+        </p>
+    </header>
+
+    <form asp-action="UpdateDocument_Skill" id="survey-form">
+        <div class="form-group">
+            <div class="row">
+                <div class="procolumn">
+
+                </div>
+                <div class="pro2column">
+
+                    <label id="name-label" asp-for="Description">Description</label>
+                    <br />
+                    <br />
+                    <label id="name-label" asp-for="Certificate_number">Certificate Number</label>
+                    <br />
+                    <h6>Completency</h6>
+                    <br />
+                    <br />
+                    <label id="name-label" asp-for="Completed">Completed</label>
+                    <br />
+                    <br />
+                    <h6>Alert Template?</h6>
+                    <br />
+                    <h6>Valid for</h6>
+                    <br />
+                    <br />
+                    <label id="name-label" asp-for="Expiry_date">Expiry Date</label>
+                    <br />
+                    <h6>Period before expiry reminder</h6>
+                    <br />
+                    <br />
+
+                    <h6>checked By</h6>
+                    <br />
+                    <br />
+                    <br />
+                    <h6>Select File</h6>
+                    <br />
+                    <br />
+                    <br />
+                    <div>
+                        <div style="float:left"><button type="submit" class="btn btn-secondary" onClick="return false;">Cancel</button></div>
+                    </div>
+                </div>
+
+
+                <div class="pro2column">
+                    <input type="text"
+                           asp-for="Description"
+                           id="name"
+                           class="form-control"
+                           required />
+                    <br />
+                    <input type="text"
+                           asp-for="Certificate_number"
+                           id="name"
+                           class="form-control"
+                           required />
+                    <br />
+                    <select id="dropdown" asp-for="Competency" class="form-control" required>
+                        @*<option disabled selected value>Gendere</option>*@
+                        <option value="">Competency Level</option>
+                        <option value="Skilled">Skilled</option>
+                        <option value="Unskilled">Unskilled</option>
+                        <option value="Training">Training</option>
+                        <option value="Competent">Competent</option>
+                        <option value="Expert">Expert</option>
+
+                    </select>
+                    <br />
+                    <br />
+                    <input type="text"
+                           asp-for="Completed"
+                           id="name"
+                           class="form-control"
+                           required />
+
+                    <br />
+                    <select id="dropdown" asp-for="Alert_template" class="form-control" required>
+                        @*<option disabled selected value>Gendere</option>*@
+                        <option value="">Alert Template</option>
+                        <option value="First Aid">First Aid</option>
+                        <option value="CPR">CPR</option>
+                        <option value="WWCC">WWCC</option>
+                        <option value="OCHRE Card">OCHRE Card</option>
+                        <option value="Police Check">Police Check</option>
+                        <option value="Police Check(international)">Police Check(international)</option>
+                        <option value="Driver License">Driver License</option>
+                    </select>
+                    <br />
+                    <select id="dropdown" asp-for="Valid_for" class="form-control" required>
+                        @*<option disabled selected value>Gendere</option>*@
+                        <option value="">eg year</option>
+                        <option value="Days">Days</option>
+                        <option value="Months">Months</option>
+                        <option value="Weeks">Weeks</option>
+                        <option value="Years">Years</option>
+                    </select>
+                    <br />
+                    <input type="text"
+                           asp-for="Expiry_date"
+                           id="name"
+                           class="form-control"
+                           required />
+                    <br />
+                    <select id="dropdown" asp-for="Preriod_befor_Expiring_reminder" class="form-control" required>
+                        @*<option disabled selected value>Gendere</option>*@
+                        <option value="">eg year</option>
+                        <option value="Days">Days</option>
+                        <option value="Months">Months</option>
+                        <option value="Weeks">Weeks</option>
+                        <option value="Years">Years</option>
+                    </select>
+                    <br />
+                    <br />
+                    <select id="dropdown" asp-for="Checked_by" class="form-control" required>
+                        @*<option disabled selected value>Gendere</option>*@
+                        <option value="">select Employee</option>
+                        <option value="Akwele Acquah">Akwele Acquah</option>
+                        <option value="Takudzwa Matsatsa">Takudzwa Matsatsa</option>
+                        <option value="Anju George">Anju George</option>
+                        <option value="Janet Kirubi">Janet Kirubi</option>
+                        <option value="Maxwell EBIZIE">Maxwell EBIZIE</option>
+                        <option value="Faida Mushegero">Faida Mushegero</option>
+                        <option value="Vicent Masuku">Vicent Masuku</option>
+                        <option value="Letty Heartbuns">Letty Heartbuns</option>
+                        <option value="Jazmine Ali">Jazmine Ali</option>
+                        <option value="Prince Makedenge">Prince Makedenge</option>
+                        <option value="Linda Sutton">Linda Sutton</option>
+                        <option value="Joy Mathew">Joy Mathew</option>
+                        <option value="Prince Test">Prince Test</option>
+                        <option value="Michael Matsatsa">Michael Matsatsa</option>
+                        <option value="Siana Panetta">Siana Panetta</option>
+                        <option value="Lisa Fehoko">Lisa Fehoko</option>
+                        <option value="Tom Ondicho">Tom Ondicho</option>
+                    </select>
+                    <br />
+                    <br />
+                    <input type="text"
+                           asp-for="Select_file"
+                           id="name"
+                           class="form-control"
+                           required />
+                    <br />
+                    <br />
+                    <br />
+
+                    <div>
+                        <div style="float:right"><button type="submit" class="btn btn-secondary" onClick="return false;">Submit</button></div>
+                    </div>
+                </div>
+                <div class="procolumn">
+
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+
+
+        <script type="text/javascript">
+            const projectName = 'survey-form';
+
+        </script>
+    </form>
+</div>
+
+
+
+
+
